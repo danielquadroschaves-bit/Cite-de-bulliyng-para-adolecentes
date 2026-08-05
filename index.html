@@ -1,107 +1,442 @@
-<<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defensores Digitais | Contra o Bullying</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conscientização e Respeito | C.E. Visconde de Guarapuava</title>
+  <style>
+    /* ESTILOS GERAIS E RESPONSIVIDADE */
+    :root {
+      --primary: #87CEFA; /* LightSkyBlue */
+      --primary-dark: #0099e6;
+      --accent: #005b96;
+      --bg-color: #f0f8ff;
+      --card-bg: #ffffff;
+      --text-color: #2c3e50;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* CABEÇALHO */
+    header {
+      background-color: var(--primary);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 4px solid var(--primary-dark);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #003366;
+      margin-bottom: 0.3rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #004080;
+    }
+
+    /* NAVEGAÇÃO */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      background-color: #e0f2fe;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background-color: var(--primary);
+      border: none;
+      color: #003366;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background-color: var(--accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* CONTEÚDO PRINCIPAL */
+    main {
+      flex: 1;
+      max-width: 1000px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 15px;
+    }
+
+    .tab-content {
+      display: none;
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 2px solid var(--primary);
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      border-bottom: 3px solid var(--primary);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    /* CARDS INFORMATIVOS */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: #f4fafc;
+      border: 1px solid var(--primary);
+      border-radius: 10px;
+      padding: 1.2rem;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    /* JOGO DA MEMÓRIA */
+    .game-info {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 500px) {
+      .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .memory-card {
+      background-color: var(--primary);
+      aspect-ratio: 1;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s, background-color 0.3s;
+      border: 2px solid var(--primary-dark);
+    }
+
+    .memory-card.flipped, .memory-card.matched {
+      background-color: #ffffff;
+      border-color: var(--accent);
+      cursor: default;
+    }
+
+    .memory-card.matched {
+      background-color: #e6fffa;
+      border-color: #2e7d32;
+    }
+
+    .game-controls {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .btn-restart {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-restart:hover {
+      background-color: #004080;
+    }
+
+    /* INFORMAÇÕES DO PARANÁ */
+    .pr-info {
+      background-color: #e6f7ff;
+      border-left: 5px solid var(--accent);
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+    }
+
+    /* RODAPÉ */
+    footer {
+      text-align: center;
+      padding: 1.2rem;
+      background-color: var(--primary);
+      color: #003366;
+      font-weight: 600;
+      margin-top: auto;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="container nav-container">
-            <div class="logo">DEFENSORES <span class="neon-text">DIGITAIS</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#sobre">O que é?</a></li>
-                    <li><a href="#consequencias">Impactos</a></li>
-                    <li><a href="#jogo">O Jogo</a></li>
-                    <li><a href="#ajuda" class="btn-ajuda">Pedir Ajuda</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <h1>Colégio Estadual Visconde de Guarapuava</h1>
+    <p>Campanha de Conscientização e Combate ao Bullying</p>
+  </header>
 
-    <section id="inicio" class="hero">
-        <div class="hero-content container">
-            <h1 class="animacao-entrada">A Violência <span class="text-destaque">Para</span> quando o Respeito <span class="neon-text-blue">Começa</span>.</h1>
-            <p class="animacao-entrada-atrasada">Conquiste o conhecimento, domine a empatia e torne-se um herói na luta contra o bullying e o cyberbullying.</p>
-            <a href="#sobre" class="btn-principal animacao-entrada-atrasada">Começar Jornada</a>
-        </div>
-        <div class="scroll-down"></div>
+  <nav>
+    <button class="nav-btn active" onclick="openTab('inicio')">Início</button>
+    <button class="nav-btn" onclick="openTab('o-que-e')">O que é Bullying?</button>
+    <button class="nav-btn" onclick="openTab('tipos')">Tipos de Bullying</button>
+    <button class="nav-btn" onclick="openTab('jogo')">🎮 Jogo da Memória</button>
+    <button class="nav-btn" onclick="openTab('ajuda')">Apoio no Paraná</button>
+  </nav>
+
+  <main>
+    <section id="inicio" class="tab-content active">
+      <h2>Unidos pelo Respeito no Ambiente Escolar</h2>
+      <p>Bem-vindo ao espaço de conscientização do <strong>Colégio Estadual Visconde de Guarapuava</strong>. Nosso objetivo é promover um ambiente escolar seguro, acolhedor e livre de qualquer forma de discriminação ou violência.</p>
+      
+      <div class="card" style="margin-top: 1.5rem; text-align: center;">
+        <h3>🤝 Compromisso da Nossa Comunidade</h3>
+        <p>Brincadeira de verdade faz todo mundo rir. Quando faz alguém chorar, isolar-se ou sentir medo, trata-se de bullying. Faça a sua parte!</p>
+      </div>
     </section>
 
-    <section id="sobre" class="sobre container">
-        <h2 class="titulo-secao">O Codigo do <span class="neon-text">Bullying</span></h2>
-        <div class="grid-sobre">
-            <div class="card-info animar-scroll">
-                <h3>O que é?</h3>
-                <p>É um comportamento agressivo, intencional e repetitivo, que ocorre sem motivação evidente, praticado por um indivíduo ou grupo contra outro, causando dor e angústia.</p>
-            </div>
-            <div class="card-info animar-scroll">
-                <h3>Onde Ocorre?</h3>
-                <p>Escolas, parquinhos, vizinhança e, cada vez mais, no ambiente digital (Cyberbullying), através de redes sociais e mensagens.</p>
-            </div>
-            <div class="card-info animar-scroll">
-                <h3>Não é Brincadeira</h3>
-                <p>Para ser brincadeira, todos precisam se divertir. Se alguém está triste, machucado ou humilhado, é violência.</p>
-            </div>
+    <section id="o-que-e" class="tab-content">
+      <h2>Entendendo o Conceito</h2>
+      <p>O <strong>bullying</strong> é caracterizado por atitudes agressivas, intencionais e repetitivas, adotadas por um ou mais estudantes contra outro, sem motivação evidente, causando dor, angústia e sofrimento.</p>
+      
+      <div class="grid-cards">
+        <div class="card">
+          <h3>Intencionalidade</h3>
+          <p>O agressor tem o objetivo consciente de machucar ou humilhar a vítima.</p>
         </div>
+        <div class="card">
+          <h3>Repetição</h3>
+          <p>Não é um fato isolado; as agressões acontecem de forma frequente ao longo do tempo.</p>
+        </div>
+        <div class="card">
+          <h3>Desequilíbrio de Poder</h3>
+          <p>A vítima sente dificuldade em se defender devido a diferenças de força física, popularidade ou apoio social.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="consequencias" class="consequencias">
-        <div class="container">
-            <h2 class="titulo-secao">Descriptografando <span class="neon-text-blue">Impactos</span></h2>
-            <p class="subtitulo">Passe o mouse ou toque nos cartões para revelar as consequências reais.</p>
-            <div class="grid-consequencias">
-                <div class="card-revelar animar-scroll">
-                    <div class="card-frente">EMOCIONAIS</div>
-                    <div class="card-verso">Ansiedade, Depressão, Baixa Autoestima, Medo constante.</div>
-                </div>
-                <div class="card-revelar animar-scroll">
-                    <div class="card-frente">SOCIAIS</div>
-                    <div class="card-verso">Isolamento, Dificuldade em fazer amigos, Queda no rendimento escolar.</div>
-                </div>
-                <div class="card-revelar animar-scroll">
-                    <div class="card-frente">FÍSICOS</div>
-                    <div class="card-verso">Dores de cabeça, Insônia, Problemas digestivos causados pelo estresse.</div>
-                </div>
-            </div>
+    <section id="tipos" class="tab-content">
+      <h2>Principais Formas de Agressão</h2>
+      <div class="grid-cards">
+        <div class="card">
+          <h3>👊 Físico</h3>
+          <p>Bater, empurrar, chutar, tomar ou estragar pertences de outros alunos.</p>
         </div>
+        <div class="card">
+          <h3>🗣️ Verbal</h3>
+          <p>Apelidos pejorativos, xingamentos, piadas de mau gosto e zombarias.</p>
+        </div>
+        <div class="card">
+          <h3>👥 Social / Psicológico</h3>
+          <p>Ignorar propositalmente, excluir do grupo, espalhar boatos e fofocas.</p>
+        </div>
+        <div class="card">
+          <h3>📱 Cyberbullying</h3>
+          <p>Ofensas, exposição de fotos sem autorização ou criação de perfis falsos nas redes sociais e jogos.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="jogo" class="jogo-secao container">
-        <h2 class="titulo-secao">O <span class="neon-text">Desafio</span> da Empatia</h2>
-        <div class="jogo-container">
-            <div id="tela-inicial-jogo">
-                <h3>🛡️ Missão: Protetor do Servidor 🛡️</h3>
-                <p>Mensagens corrompidas (bullying) estão tentando invadir o Servidor da Amizade. Sua missão é usar o Escudo da Empatia para bloquear as mensagens ruins e deixar passar as mensagens boas!</p>
-                <button id="btn-iniciar-jogo" class="btn-principal">Iniciar Missão</button>
-            </div>
-            <div id="area-jogo" class="hidden">
-                <div class="placar">Pontos: <span id="ponto-num">0</span> | Vidas: <span id="vida-num">3</span></div>
-                <div id="campo-batalha">
-                    <div id="jogador">🛡️</div>
-                </div>
-            </div>
-            <div id="tela-fim-jogo" class="hidden">
-                <h3>Missão Finalizada</h3>
-                <p>Sua pontuação de Empatia: <span id="pontuacao-final">0</span></p>
-                <button id="btn-reiniciar-jogo" class="btn-principal">Tentar Novamente</button>
-            </div>
+    <section id="jogo" class="tab-content">
+      <h2>Jogo da Memória: Atitudes de Respeito</h2>
+      <p style="text-align: center;">Encontre os pares de símbolos que representam boas práticas e empatia na escola!</p>
+
+      <div class="game-info">
+        <p>Tentativas: <span id="tries-count">0</span> | Pares Encontrados: <span id="matches-count">0</span>/6</p>
+      </div>
+
+      <div class="memory-grid" id="memory-grid">
         </div>
+
+      <div class="game-controls">
+        <button class="btn-restart" onclick="initGame()">Reiniciar Jogo</button>
+      </div>
     </section>
 
-    <footer id="ajuda">
-        <div class="container footer-content">
-            <h3>Você Não Está Sozinho.</h3>
-            <p>Se você ou alguém que você conhece está passando por isso, peça ajuda a um adulto de confiança (pais, professores, diretores) ou ligue para o CVV (Como Vai Você) - 188.</p>
-            <p class="copy">&copy; 2023 Defensores Digitais. Projeto Educacional.</p>
-        </div>
-    </footer>
+    <section id="ajuda" class="tab-content">
+      <h2>Canais de Ajuda e Apoio no Paraná</h2>
+      <p>Se você está sofrendo bullying ou presenciou alguma situação no colégio, não guarde para si. Contar para um adulto de confiança é o primeiro passo.</p>
 
-    <script src="script.js"></script>
+      <div class="pr-info">
+        <h3>🏫 No Colégio Visconde de Guarapuava</h3>
+        <p>Procure a <strong>Equipe Pedagógica</strong>, a <strong>Direção</strong> ou um <strong>Professor de confiança</strong>. A escola está pronta para ouvir e ajudar sem julgamentos.</p>
+      </div>
+
+      <div class="grid-cards" style="margin-top: 1rem;">
+        <div class="card">
+          <h3>📞 Disque 181 (Paraná)</h3>
+          <p>Disque Denúncia do Estado do Paraná. O atendimento é gratuito e garante o anonimato.</p>
+        </div>
+        <div class="card">
+          <h3>📞 Disque 100</h3>
+          <p>Canal nacional para denúncias de violações de direitos humanos de crianças e adolescentes.</p>
+        </div>
+        <div class="card">
+          <h3>⚖️ BAPD / Patrulha Escolar</h3>
+          <p>A Batalhão de Patrulha Escolar Comunitária (BPEC) atua em parceria com as escolas estaduais do Paraná para garantir a segurança no ambiente escolar.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Colégio Estadual Visconde de Guarapuava | Juntos Promovendo a Empatia</p>
+  </footer>
+
+  <script>
+    // TROCA DE ABAS
+    function openTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+
+      const activeBtn = Array.from(document.querySelectorAll('.nav-btn'))
+        .find(btn => btn.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    // LÓGICA DO JOGO DA MEMÓRIA
+    const icons = ['🤝', '💙', '🕊️', '🛡️', '☀️', '💬'];
+    let cardsData = [...icons, ...icons];
+    let flippedCards = [];
+    let matchedPairs = 0;
+    let tries = 0;
+    let lockBoard = false;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function initGame() {
+      const grid = document.getElementById('memory-grid');
+      grid.innerHTML = '';
+      cardsData = shuffle([...icons, ...icons]);
+      flippedCards = [];
+      matchedPairs = 0;
+      tries = 0;
+      lockBoard = false;
+
+      document.getElementById('tries-count').innerText = tries;
+      document.getElementById('matches-count').innerText = matchedPairs;
+
+      cardsData.forEach((symbol, index) => {
+        const card = document.createElement('div');
+        card.classList.add('memory-card');
+        card.dataset.symbol = symbol;
+        card.dataset.index = index;
+        card.innerText = '❓';
+        card.onclick = () => flipCard(card);
+        grid.appendChild(card);
+      });
+    }
+
+    function flipCard(card) {
+      if (lockBoard || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+      card.classList.add('flipped');
+      card.innerText = card.dataset.symbol;
+      flippedCards.push(card);
+
+      if (flippedCards.length === 2) {
+        tries++;
+        document.getElementById('tries-count').innerText = tries;
+        checkMatch();
+      }
+    }
+
+    function checkMatch() {
+      const [card1, card2] = flippedCards;
+
+      if (card1.dataset.symbol === card2.dataset.symbol) {
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        matchedPairs++;
+        document.getElementById('matches-count').innerText = matchedPairs;
+        flippedCards = [];
+
+        if (matchedPairs === icons.length) {
+          setTimeout(() => {
+            alert(`Parabéns! Você completou o jogo em ${tries} tentativas!`);
+          }, 300);
+        }
+      } else {
+        lockBoard = true;
+        setTimeout(() => {
+          card1.classList.remove('flipped');
+          card2.classList.remove('flipped');
+          card1.innerText = '❓';
+          card2.innerText = '❓';
+          flippedCards = [];
+          lockBoard = false;
+        }, 1000);
+      }
+    }
+
+    // Inicializa o jogo ao carregar
+    initGame();
+  </script>
 </body>
 </html>
