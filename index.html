@@ -1,60 +1,105 @@
-<<!DOCTYPE html>
-<html lang="pt-br">
+<<<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Respeito em Foco | Contra o Bullying</title>
+    <title>Defensores Digitais | Contra o Bullying</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <div class="logo">🛡️ Respeito<span>Foco</span></div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#sobre">O que é?</a></li>
-            <li><a href="#jogo">Desafio da Empatia</a></li>
-        </ul>
-    </nav>
 
-    <header id="home">
-        <div class="hero-content">
-            <h1>Bullying não é brincadeira.</h1>
-            <p>Transforme o mundo com empatia e respeito. Aprenda, entenda e jogue para mudar essa realidade.</p>
-            <a href="#jogo" class="btn-main">Começar Desafio</a>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">DEFENSORES <span class="neon-text">DIGITAIS</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">O que é?</a></li>
+                    <li><a href="#consequencias">Impactos</a></li>
+                    <li><a href="#jogo">O Jogo</a></li>
+                    <li><a href="#ajuda" class="btn-ajuda">Pedir Ajuda</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section id="sobre">
-        <h2>Entenda o Tema</h2>
-        <div class="cards">
-            <div class="card">
+    <section id="inicio" class="hero">
+        <div class="hero-content container">
+            <h1 class="animacao-entrada">A Violência <span class="text-destaque">Para</span> quando o Respeito <span class="neon-text-blue">Começa</span>.</h1>
+            <p class="animacao-entrada-atrasada">Conquiste o conhecimento, domine a empatia e torne-se um herói na luta contra o bullying e o cyberbullying.</p>
+            <a href="#sobre" class="btn-principal animacao-entrada-atrasada">Começar Jornada</a>
+        </div>
+        <div class="scroll-down"></div>
+    </section>
+
+    <section id="sobre" class="sobre container">
+        <h2 class="titulo-secao">O Codigo do <span class="neon-text">Bullying</span></h2>
+        <div class="grid-sobre">
+            <div class="card-info animar-scroll">
                 <h3>O que é?</h3>
-                <p>É um comportamento agressivo, intencional e repetitivo, sem motivação evidente, praticado por um indivíduo ou grupo.</p>
+                <p>É um comportamento agressivo, intencional e repetitivo, que ocorre sem motivação evidente, praticado por um indivíduo ou grupo contra outro, causando dor e angústia.</p>
             </div>
-            <div class="card">
-                <h3>Cyberbullying</h3>
-                <p>Quando a agressão ocorre no ambiente virtual, como redes sociais ou jogos, espalhando ofensas rapidamente.</p>
+            <div class="card-info animar-scroll">
+                <h3>Onde Ocorre?</h3>
+                <p>Escolas, parquinhos, vizinhança e, cada vez mais, no ambiente digital (Cyberbullying), através de redes sociais e mensagens.</p>
             </div>
-            <div class="card">
-                <h3>Como Ajudar?</h3>
-                <p>Não seja um espectador. Apoie a vítima, não ria da situação e denuncie a um adulto de confiança.</p>
+            <div class="card-info animar-scroll">
+                <h3>Não é Brincadeira</h3>
+                <p>Para ser brincadeira, todos precisam se divertir. Se alguém está triste, machucado ou humilhado, é violência.</p>
             </div>
         </div>
     </section>
 
-    <section id="jogo">
-        <h2>Jogo: Coletor de Empatia</h2>
-        <p>Capture as palavras de **respeito** e evite as de **bullying**!</p>
-        <div id="game-container">
-            <div id="score">Pontos: 0</div>
-            <div id="player">🛡️</div>
+    <section id="consequencias" class="consequencias">
+        <div class="container">
+            <h2 class="titulo-secao">Descriptografando <span class="neon-text-blue">Impactos</span></h2>
+            <p class="subtitulo">Passe o mouse ou toque nos cartões para revelar as consequências reais.</p>
+            <div class="grid-consequencias">
+                <div class="card-revelar animar-scroll">
+                    <div class="card-frente">EMOCIONAIS</div>
+                    <div class="card-verso">Ansiedade, Depressão, Baixa Autoestima, Medo constante.</div>
+                </div>
+                <div class="card-revelar animar-scroll">
+                    <div class="card-frente">SOCIAIS</div>
+                    <div class="card-verso">Isolamento, Dificuldade em fazer amigos, Queda no rendimento escolar.</div>
+                </div>
+                <div class="card-revelar animar-scroll">
+                    <div class="card-frente">FÍSICOS</div>
+                    <div class="card-verso">Dores de cabeça, Insônia, Problemas digestivos causados pelo estresse.</div>
+                </div>
             </div>
-        <button id="start-game">Iniciar Jogo</button>
+        </div>
     </section>
 
-    <footer>
-        <p>&copy; 2023 Projeto Escolar - Todos contra o Bullying</p>
+    <section id="jogo" class="jogo-secao container">
+        <h2 class="titulo-secao">O <span class="neon-text">Desafio</span> da Empatia</h2>
+        <div class="jogo-container">
+            <div id="tela-inicial-jogo">
+                <h3>🛡️ Missão: Protetor do Servidor 🛡️</h3>
+                <p>Mensagens corrompidas (bullying) estão tentando invadir o Servidor da Amizade. Sua missão é usar o Escudo da Empatia para bloquear as mensagens ruins e deixar passar as mensagens boas!</p>
+                <button id="btn-iniciar-jogo" class="btn-principal">Iniciar Missão</button>
+            </div>
+            <div id="area-jogo" class="hidden">
+                <div class="placar">Pontos: <span id="ponto-num">0</span> | Vidas: <span id="vida-num">3</span></div>
+                <div id="campo-batalha">
+                    <div id="jogador">🛡️</div>
+                </div>
+            </div>
+            <div id="tela-fim-jogo" class="hidden">
+                <h3>Missão Finalizada</h3>
+                <p>Sua pontuação de Empatia: <span id="pontuacao-final">0</span></p>
+                <button id="btn-reiniciar-jogo" class="btn-principal">Tentar Novamente</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="ajuda">
+        <div class="container footer-content">
+            <h3>Você Não Está Sozinho.</h3>
+            <p>Se você ou alguém que você conhece está passando por isso, peça ajuda a um adulto de confiança (pais, professores, diretores) ou ligue para o CVV (Como Vai Você) - 188.</p>
+            <p class="copy">&copy; 2023 Defensores Digitais. Projeto Educacional.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
