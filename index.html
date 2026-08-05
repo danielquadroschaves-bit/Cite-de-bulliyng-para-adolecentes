@@ -1,219 +1,62 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conscientização sobre o Bullying</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respeito em Foco | Contra o Bullying</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <header>
-    <h1>Juntos Contra o Bullying</h1>
     <nav>
-      <button class="nav-btn active" onclick="openTab('inicio')">Início</button>
-      <button class="nav-btn" onclick="openTab('tipos')">Tipos de Bullying</button>
-      <button class="nav-btn" onclick="openTab('consequencias')">Consequências</button>
-      <button class="nav-btn" onclick="openTab('ajuda')">Como Pedir Ajuda</button>
-      <button class="nav-btn" onclick="openTab('quiz')">Quiz</button>
+        <div class="logo">🛡️ Respeito<span>Foco</span></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre">O que é?</a></li>
+            <li><a href="#jogo">Desafio da Empatia</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <main>
-    <section id="inicio" class="tab-content active">
-      <h2>O que é Bullying?</h2>
-      <p>Bullying é todo ato de violência física ou psicológica, intencional e repetitivo, praticado por um indivíduo ou grupo contra outro, sem motivação evidente, causando dor e angústia.</p>
-      
-      <div class="card-highlight">
-        <h3>Lembre-se:</h3>
-        <p>Brincadeira só é legal quando **todos** estão se divertindo. Se faz alguém se sentir mal, triste ou com medo, não é brincadeira.</p>
-      </div>
+    <header id="home">
+        <div class="hero-content">
+            <h1>Bullying não é brincadeira.</h1>
+            <p>Transforme o mundo com empatia e respeito. Aprenda, entenda e jogue para mudar essa realidade.</p>
+            <a href="#jogo" class="btn-main">Começar Desafio</a>
+        </div>
+    </header>
+
+    <section id="sobre">
+        <h2>Entenda o Tema</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>O que é?</h3>
+                <p>É um comportamento agressivo, intencional e repetitivo, sem motivação evidente, praticado por um indivíduo ou grupo.</p>
+            </div>
+            <div class="card">
+                <h3>Cyberbullying</h3>
+                <p>Quando a agressão ocorre no ambiente virtual, como redes sociais ou jogos, espalhando ofensas rapidamente.</p>
+            </div>
+            <div class="card">
+                <h3>Como Ajudar?</h3>
+                <p>Não seja um espectador. Apoie a vítima, não ria da situação e denuncie a um adulto de confiança.</p>
+            </div>
+        </div>
     </section>
 
-    <section id="tipos" class="tab-content">
-      <h2>Tipos Frequentes de Bullying</h2>
-      <div class="grid-cards">
-        <div class="card">
-          <h3>Físico</h3>
-          <p>Agressões diretas como empurrões, socos, pontapés ou estragar pertences alheios.</p>
-        </div>
-        <div class="card">
-          <h3>Verbal</h3>
-          <p>Insultos, apelidos pejorativos, xingamentos, piadas ofensivas e zombarias.</p>
-        </div>
-        <div class="card">
-          <h3>Psicológico/Social</h3>
-          <p>Exclusão social, espalhar boatos, chantagem, intimidação e humilhação em grupo.</p>
-        </div>
-        <div class="card">
-          <h3>Cyberbullying</h3>
-          <p>Bullying praticado no ambiente virtual (redes sociais, jogos, grupos de mensagens) com ofensas, memes maldosos ou vazamento de fotos.</p>
-        </div>
-      </div>
+    <section id="jogo">
+        <h2>Jogo: Coletor de Empatia</h2>
+        <p>Capture as palavras de **respeito** e evite as de **bullying**!</p>
+        <div id="game-container">
+            <div id="score">Pontos: 0</div>
+            <div id="player">🛡️</div>
+            </div>
+        <button id="start-game">Iniciar Jogo</button>
     </section>
 
-    <section id="consequencias" class="tab-content">
-      <h2>Impactos na Vida dos Jovens</h2>
-      <p>O bullying traz sérias consequências para a saúde mental e desenvolvimento de quem o sofre:</p>
-      <ul>
-        <li><strong>Queda no rendimento escolar:</strong> Dificuldade de concentração e medo de ir à escola.</li>
-        <li><strong>Isolamento social:</strong> Afastamento de amigos e familiares por vergonha ou medo.</li>
-        <li><strong>Ansiedade e Depressão:</strong> Sentimentos constantes de tristeza, insegurança e baixa autoestima.</li>
-        <li><strong>Sintomas físicos:</strong> Dores de cabeça, dores de estômago e insônia causadas pelo estresse.</li>
-      </ul>
-    </section>
+    <footer>
+        <p>&copy; 2023 Projeto Escolar - Todos contra o Bullying</p>
+    </footer>
 
-    <section id="ajuda" class="tab-content">
-      <h2>Você Não Está Sozinho(a)!</h2>
-      <p>Se você está sofrendo bullying ou conhece alguém nessa situação, saiba como agir:</p>
-      
-      <div class="steps">
-        <div class="step">
-          <span>1</span>
-          <p><strong>Fale com um adulto de confiança:</strong> Pais, professores, coordenadores ou psicólogos da escola.</p>
-        </div>
-        <div class="step">
-          <span>2</span>
-          <p><strong>Não guarde para você:</strong> Contar o que está acontecendo não é "fofoca", é buscar proteção.</p>
-        </div>
-        <div class="step">
-          <span>3</span>
-          <p><strong>Guarde evidências (no Cyberbullying):</strong> Tire prints de mensagens, comentários ou fotos para comprovar o ocorrido.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="quiz" class="tab-content">
-      <h2>Quiz de Conscientização</h2>
-      <p>Testes seus conhecimentos e descubra como ser um aliado na prevenção do bullying!</p>
-      
-      <div id="quiz-container">
-        <div id="question-box">
-          <h3 id="question-text">Carregando pergunta...</h3>
-          <div id="options-box"></div>
-        </div>
-        <div id="result-box" class="hidden">
-          <h3>Resultado</h3>
-          <p id="score-text"></p>
-          <button onclick="restartQuiz()">Tentar Novamente</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; Projeto de Conscientização e Apoio Escolar.</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conscientização sobre o Bullying</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-  <header>
-    <h1>Juntos Contra o Bullying</h1>
-    <nav>
-      <button class="nav-btn active" onclick="openTab('inicio')">Início</button>
-      <button class="nav-btn" onclick="openTab('tipos')">Tipos de Bullying</button>
-      <button class="nav-btn" onclick="openTab('consequencias')">Consequências</button>
-      <button class="nav-btn" onclick="openTab('ajuda')">Como Pedir Ajuda</button>
-      <button class="nav-btn" onclick="openTab('quiz')">Quiz</button>
-    </nav>
-  </header>
-
-  <main>
-    <section id="inicio" class="tab-content active">
-      <h2>O que é Bullying?</h2>
-      <p>Bullying é todo ato de violência física ou psicológica, intencional e repetitivo, praticado por um indivíduo ou grupo contra outro, sem motivação evidente, causando dor e angústia.</p>
-      
-      <div class="card-highlight">
-        <h3>Lembre-se:</h3>
-        <p>Brincadeira só é legal quando **todos** estão se divertindo. Se faz alguém se sentir mal, triste ou com medo, não é brincadeira.</p>
-      </div>
-    </section>
-
-    <section id="tipos" class="tab-content">
-      <h2>Tipos Frequentes de Bullying</h2>
-      <div class="grid-cards">
-        <div class="card">
-          <h3>Físico</h3>
-          <p>Agressões diretas como empurrões, socos, pontapés ou estragar pertences alheios.</p>
-        </div>
-        <div class="card">
-          <h3>Verbal</h3>
-          <p>Insultos, apelidos pejorativos, xingamentos, piadas ofensivas e zombarias.</p>
-        </div>
-        <div class="card">
-          <h3>Psicológico/Social</h3>
-          <p>Exclusão social, espalhar boatos, chantagem, intimidação e humilhação em grupo.</p>
-        </div>
-        <div class="card">
-          <h3>Cyberbullying</h3>
-          <p>Bullying praticado no ambiente virtual (redes sociais, jogos, grupos de mensagens) com ofensas, memes maldosos ou vazamento de fotos.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="consequencias" class="tab-content">
-      <h2>Impactos na Vida dos Jovens</h2>
-      <p>O bullying traz sérias consequências para a saúde mental e desenvolvimento de quem o sofre:</p>
-      <ul>
-        <li><strong>Queda no rendimento escolar:</strong> Dificuldade de concentração e medo de ir à escola.</li>
-        <li><strong>Isolamento social:</strong> Afastamento de amigos e familiares por vergonha ou medo.</li>
-        <li><strong>Ansiedade e Depressão:</strong> Sentimentos constantes de tristeza, insegurança e baixa autoestima.</li>
-        <li><strong>Sintomas físicos:</strong> Dores de cabeça, dores de estômago e insônia causadas pelo estresse.</li>
-      </ul>
-    </section>
-
-    <section id="ajuda" class="tab-content">
-      <h2>Você Não Está Sozinho(a)!</h2>
-      <p>Se você está sofrendo bullying ou conhece alguém nessa situação, saiba como agir:</p>
-      
-      <div class="steps">
-        <div class="step">
-          <span>1</span>
-          <p><strong>Fale com um adulto de confiança:</strong> Pais, professores, coordenadores ou psicólogos da escola.</p>
-        </div>
-        <div class="step">
-          <span>2</span>
-          <p><strong>Não guarde para você:</strong> Contar o que está acontecendo não é "fofoca", é buscar proteção.</p>
-        </div>
-        <div class="step">
-          <span>3</span>
-          <p><strong>Guarde evidências (no Cyberbullying):</strong> Tire prints de mensagens, comentários ou fotos para comprovar o ocorrido.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="quiz" class="tab-content">
-      <h2>Quiz de Conscientização</h2>
-      <p>Testes seus conhecimentos e descubra como ser um aliado na prevenção do bullying!</p>
-      
-      <div id="quiz-container">
-        <div id="question-box">
-          <h3 id="question-text">Carregando pergunta...</h3>
-          <div id="options-box"></div>
-        </div>
-        <div id="result-box" class="hidden">
-          <h3>Resultado</h3>
-          <p id="score-text"></p>
-          <button onclick="restartQuiz()">Tentar Novamente</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; Projeto de Conscientização e Apoio Escolar.</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
