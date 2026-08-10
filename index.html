@@ -439,4 +439,422 @@
     initGame();
   </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Conscientização sobre Bullying | C.E. Visconde de Guarapuava</title>
+  <style>
+    /* VARIÁVEIS E ESTILOS GERAIS */
+    :root {
+      --primary: #87CEFA; /* LightSkyBlue */
+      --primary-dark: #0099e6;
+      --accent: #005b96;
+      --bg-color: #f0f8ff;
+      --card-bg: #ffffff;
+      --text-color: #2c3e50;
+      --correct: #2e7d32;
+      --wrong: #c62828;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* CABEÇALHO RESPONSIVO */
+    header {
+      width: 100%;
+      background-color: var(--primary);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 4px solid var(--primary-dark);
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      color: #003366;
+      margin-bottom: 0.2rem;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #004080;
+    }
+
+    /* CONTAINER PRINCIPAL DO QUIZ */
+    main {
+      width: 100%;
+      max-width: 700px;
+      padding: 20px;
+      margin: auto;
+    }
+
+    .quiz-card {
+      background-color: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      position: relative;
+    }
+
+    /* BARRA DE PROGRESSO */
+    .progress-bar {
+      width: 100%;
+      background-color: #e0e0e0;
+      height: 10px;
+      border-radius: 5px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--accent);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* ELEMENTOS DA PERGUNTA */
+    .question-title {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      background-color: #f4fafc;
+      border: 2px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 1rem;
+      color: var(--text-color);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background-color: var(--primary);
+      color: #003366;
+      transform: translateX(4px);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-btn.correct {
+      background-color: #e8f5e9;
+      border-color: var(--correct);
+      color: var(--correct);
+    }
+
+    .option-btn.wrong {
+      background-color: #ffebee;
+      border-color: var(--wrong);
+      color: var(--wrong);
+    }
+
+    /* CAIXA DE FEEDBACK E BOTÃO PRÓXIMO */
+    .feedback-box {
+      margin-top: 1.2rem;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      display: none;
+    }
+
+    .btn-action {
+      margin-top: 1.5rem;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.2s;
+    }
+
+    .btn-action:hover {
+      background-color: #004080;
+    }
+
+    /* TELA DE RESULTADO FINAL */
+    .result-screen {
+      text-align: center;
+      display: none;
+    }
+
+    .result-screen h2 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .score-badge {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #003366;
+      margin: 1rem 0;
+    }
+
+    /* RODAPÉ */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--primary);
+      color: #003366;
+      font-weight: 600;
+      margin-top: auto;
+      font-size: 0.85rem;
+    }
+
+    /* ADAPTAÇÕES PARA TELAS PEQUENAS (CELULARES) */
+    @media (max-width: 480px) {
+      .quiz-card {
+        padding: 1.2rem;
+      }
+
+      .question-title {
+        font-size: 1.05rem;
+      }
+
+      .option-btn {
+        font-size: 0.9rem;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Colégio Estadual Visconde de Guarapuava</h1>
+    <p>Quiz de Empatia e Conscientização sobre Bullying</p>
+  </header>
+
+  <main>
+    <div class="quiz-card">
+      <div id="quiz-screen">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="question-title" id="question-text">Carregando pergunta...</div>
+
+        <div class="options-grid" id="options-container">
+          </div>
+
+        <div class="feedback-box" id="feedback-box"></div>
+
+        <button class="btn-action" id="next-btn" style="display: none;" onclick="nextQuestion()">Próxima Pergunta ➔</button>
+      </div>
+
+      <div id="result-screen" class="result-screen">
+        <h2>Quiz Concluído!</h2>
+        <p>Veja o seu desempenho sobre a prevenção do bullying:</p>
+        
+        <div class="score-badge" id="score-text">0 / 0</div>
+        
+        <p id="final-message" style="margin-bottom: 1.5rem; line-height: 1.5;"></p>
+        
+        <button class="btn-action" onclick="restartQuiz()">Refazer Quiz 🔄</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Colégio Estadual Visconde de Guarapuava | Juntos contra o Bullying</p>
+  </footer>
+
+  <script>
+    // BASE DE DADOS DAS PERGUNTAS
+    const quizData = [
+      {
+        question: "1. Qual das alternativas define corretamente a prática do bullying?",
+        options: [
+          "Ações agressivas, intencionais e repetitivas contra um estudante sem motivação evidente.",
+          "Uma brincadeira rápida onde todos os envolvidos acham engraçado.",
+          "Um desacordo pontual entre dois colegas durante uma atividade em grupo.",
+          "Uma crítica feita pelo professor em relação à nota da avaliação."
+        ],
+        correct: 0,
+        explanation: "O bullying se caracteriza pela intenção de machucar/humilhar e pela repetição das agressões ao longo do tempo."
+      },
+      {
+        question: "2. O que caracteriza a prática do Cyberbullying?",
+        options: [
+          "Entrar em um grupo de estudos online da turma.",
+          "Bloquear uma conta desconhecida que envia mensagens de spam.",
+          "Uso de redes sociais e aplicativos para espalhar boatos, ofensas ou fotos constrangedoras de alguém.",
+          "Jogar partidas de jogos online respeitando os demais jogadores."
+        ],
+        correct: 2,
+        explanation: "Cyberbullying é a violência psicológica praticada no ambiente virtual através de mensagens, memes ou exposição indevida."
+      },
+      {
+        question: "3. Se você presenciar um colega sendo intimidado no colégio, qual é a atitude correta?",
+        options: [
+          "Gravar com o celular e compartilhar no grupo da sala.",
+          "Apoiar o colega, demonstrar empatia e avisar um professor ou a equipe pedagógica.",
+          "Rir junto com os agressores para não virar um alvo também.",
+          "Ignorar completamente a situação fingindo que nada aconteceu."
+        ],
+        correct: 1,
+        explanation: "Avisar um adulto responsável e apoiar quem está sofrendo a agressão interrompe o ciclo do bullying."
+      },
+      {
+        question: "4. Qual é a diferença entre uma brincadeira saudável e o bullying?",
+        options: [
+          "Não há diferença, toda brincadeira causa o mesmo efeito.",
+          "A brincadeira só é saudável se for feita na internet.",
+          "Na brincadeira saudável todos se divertem; no bullying há alguém sofrendo, triste ou com medo.",
+          "O bullying só ocorre quando há agressão física direta."
+        ],
+        correct: 2,
+        explanation: "Brincadeiras de verdade geram diversão mútua. Se alguém fica chateado, triste ou constrangido, deixa de ser brincadeira."
+      }
+    ];
+
+    // VARIÁVEIS DE CONTROLE DO ESTADO
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    // INICIALIZA UMA PERGUNTA
+    function loadQuestion() {
+      answered = false;
+      const current = quizData[currentQuestionIndex];
+
+      // Atualiza progresso da barra
+      const progressPercent = ((currentQuestionIndex) / quizData.length) * 100;
+      document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+
+      // Atualiza textos
+      document.getElementById('question-text').innerText = current.question;
+      
+      const feedbackBox = document.getElementById('feedback-box');
+      feedbackBox.style.display = 'none';
+      feedbackBox.innerText = '';
+
+      document.getElementById('next-btn').style.display = 'none';
+
+      // Gera os botões das opções
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      current.options.forEach((optionText, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = optionText;
+        btn.onclick = () => selectOption(index, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    // PROCESSA A OPÇÃO SELECIONADA
+    function selectOption(selectedIndex, selectedBtn) {
+      if (answered) return;
+      answered = true;
+
+      const current = quizData[currentQuestionIndex];
+      const buttons = document.querySelectorAll('.option-btn');
+      const feedbackBox = document.getElementById('feedback-box');
+
+      buttons.forEach((btn, index) => {
+        btn.disabled = true;
+        if (index === current.correct) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (selectedIndex === current.correct) {
+        score++;
+        feedbackBox.style.backgroundColor = '#e8f5e9';
+        feedbackBox.style.color = '#2e7d32';
+        feedbackBox.innerText = '✅ Resposta Correta! ' + current.explanation;
+      } else {
+        selectedBtn.classList.add('wrong');
+        feedbackBox.style.backgroundColor = '#ffebee';
+        feedbackBox.style.color = '#c62828';
+        feedbackBox.innerText = '❌ Resposta Incorreta. ' + current.explanation;
+      }
+
+      feedbackBox.style.display = 'block';
+      document.getElementById('next-btn').style.display = 'block';
+    }
+
+    // AVANÇA PARA A PRÓXIMA
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quizData.length) {
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    // EXIBE RESULTADO FINAL
+    function showResults() {
+      document.getElementById('progress-fill').style.width = '100%';
+      document.getElementById('quiz-screen').style.display = 'none';
+      
+      const resultScreen = document.getElementById('result-screen');
+      resultScreen.style.display = 'block';
+
+      document.getElementById('score-text').innerText = `${score} / ${quizData.length}`;
+
+      const finalMessage = document.getElementById('final-message');
+      if (score === quizData.length) {
+        finalMessage.innerText = 'Parabéns! Você demonstrou excelente conhecimento e empatia. Continue sendo um exemplo positivo no Visconde de Guarapuava! 🛡️✨';
+      } else if (score >= 2) {
+        finalMessage.innerText = 'Muito bom! Você compreende bem a importância de prevenir o bullying. Revise as dicas para ser um aliado ainda melhor! 👍';
+      } else {
+        finalMessage.innerText = 'Que tal refazer o teste? Aprender sobre respeito e empatia ajuda a transformar nosso colégio em um lugar melhor para todos! 💡';
+      }
+    }
+
+    // REINICIA O QUIZ
+    function restartQuiz() {
+      score = 0;
+      currentQuestionIndex = 0;
+      document.getElementById('result-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'block';
+      loadQuestion();
+    }
+
+    // CARREGA NA PRIMEIRA VEZ
+    loadQuestion();
+  </script>
+</body>
 </html>
