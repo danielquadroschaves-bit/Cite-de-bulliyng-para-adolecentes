@@ -1137,3 +1137,279 @@
         1: {
             diff: "Fácil",
             q: "Se uma pessoa está sendo excluída propositalmente e recebendo apelidos maldosos repetidas vezes, isso configura:",
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conscientização e Apoio Escolar - PR</title>
+    <style>
+        :root {
+            --primary: #4a90e2;
+            --success: #2ecc71;
+            --bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 110px;
+            padding: 10px;
+            border: none;
+            background: #e9ecef;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .game-section {
+            display: none;
+        }
+
+        .game-section.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid var(--primary);
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        fieldset {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: var(--primary);
+            padding: 0 5px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 90px;
+        }
+
+        button.action-btn {
+            width: 100%;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('inicio', event)">Início</button>
+        <button class="tab-btn" onclick="switchTab('o-que-e', event)">O que é</button>
+        <button class="tab-btn" onclick="switchTab('tipos', event)">Tipos</button>
+        <button class="tab-btn" onclick="switchTab('apoio-pr', event)">Apoio Paraná</button>
+        <button class="tab-btn" onclick="switchTab('quiz', event)">Quiz Progressivo</button>
+    </div>
+
+    <!-- 1. INÍCIO -->
+    <div id="inicio-section" class="game-section active">
+        <h2>Bem-vindo ao Portal de Conscientização</h2>
+        <p>Este espaço foi criado para informar, orientar e combater práticas agressivas no ambiente escolar e social.</p>
+        <div class="info-box">
+            <p>Utilize o menu superior para navegar pelas definições, conhecer os tipos de agressão, testar seus conhecimentos no Quiz ou acessar a rede de apoio específica do estado do Paraná com canal de relato seguro.</p>
+        </div>
+    </div>
+
+    <!-- 2. O QUE É O BULLYING -->
+    <div id="o-que-e-section" class="game-section">
+        <h2>O que é o Bullying?</h2>
+        <div class="info-box">
+            <p>O <strong>bullying</strong> caracteriza-se por atos de violência física ou psicológica, intencionais e repetitivos, praticados por um ou mais indivíduos contra uma ou mais vítimas, sem motivação óbvia, gerando sofrimento, medo e a sensação de intimidação ou exclusão.</p>
+        </div>
+    </div>
+
+    <!-- 3. TIPOS DE BULLYING -->
+    <div id="tipos-section" class="game-section">
+        <h2>Tipos de Bullying</h2>
+        <ul>
+            <li><strong>Verbal:</strong> Insultos, xingamentos, apelidos pejorativos, humilhações públicas e ameaças.</li>
+            <li><strong>Físico:</strong> Empurrões, socos, puxões, chutes ou destruição de pertences pessoais.</li>
+            <li><strong>Social / Relacional:</strong> Exclusão intencional de grupos, isolamento forçado e difamação de boatos.</li>
+            <li><strong>Psicológico:</strong> Perseguição, chantagem, manipulação e hostilização contínua.</li>
+            <li><strong>Cyberbullying:</strong> Agressões praticadas por meio de ambientes virtuais, redes sociais e aplicativos de mensagens.</li>
+        </ul>
+    </div>
+
+    <!-- 4. APOIO PARANÁ (SÓ O DESABAFO) -->
+    <div id="apoio-pr-section" class="game-section">
+        <h2>Rede de Apoio - Paraná</h2>
+        <p>Espaço de acolhimento regional e canal seguro para registro de ocorrência no estado.</p>
+        
+        <div class="info-box">
+            <p><strong>Canais de ajuda no PR:</strong> Secretaria de Estado da Educação (Seed-PR) via orientações pedagógicas nas escolas ou Disque Direitos Humanos (Disque 100).</p>
+        </div>
+
+        <hr style="border:0; border-top:1px solid var(--border); margin:20px 0;">
+
+        <h3>Área de Desabafo / Registro Seguro</h3>
+        <form onsubmit="event.preventDefault(); alert('Relato enviado com segurança para a rede de apoio do Paraná.');">
+            <fieldset>
+                <legend>Identificação Opcional</legend>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" placeholder="Anônimo se preferir">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>O Ocorrido</legend>
+                <div class="form-group">
+                    <label for="cidade">Sua Cidade no PR:</label>
+                    <input type="text" id="cidade" placeholder="Ex: Curitiba, Londrina, Maringá...">
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descreva o problema:</label>
+                    <textarea id="descricao" placeholder="Relate os fatos com clareza..."></textarea>
+                </div>
+            </fieldset>
+            <button class="action-btn" type="submit">Enviar Relato</button>
+        </form>
+    </div>
+
+    <!-- 5. QUIZ PROGRESSIVO -->
+    <div id="quiz-section" class="game-section">
+        <div class="status-bar">
+            <span>Rodada: <span id="quiz-level">1</span>/5</span>
+            <span>Dificuldade: <span id="quiz-diff">Fácil</span></span>
+        </div>
+        <div id="quiz-box">
+            <div id="quiz-q" style="font-weight:600; margin-bottom:15px;">Carregando...</div>
+            <div id="quiz-opts" style="display:flex; flex-direction:column; gap:8px;"></div>
+        </div>
+        <button class="action-btn" style="display:none;" id="next-quiz-btn" onclick="nextQuizLevel()">Próxima Rodada do Quiz</button>
+    </div>
+</div>
+
+<script>
+    function switchTab(tabId, evt) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active'));
+        
+        const map = {
+            'inicio': 'inicio-section',
+            'o-que-e': 'o-que-e-section',
+            'tipos': 'tipos-section',
+            'apoio-pr': 'apoio-pr-section',
+            'quiz': 'quiz-section'
+        };
+        
+        evt.target.classList.add('active');
+        document.getElementById(map[tabId]).classList.add('active');
+        if(tabId === 'quiz') initQuiz();
+    }
+
+    // Quiz Progressivo com dificuldade crescente
+    let quizRound = 1;
+    const quizData = {
+        1: { diff: "Fácil", q: "Excluir alguém de conversas propositalmente é:", opts: ["Brincadeira", "Bullying Relacional", "Normal", "Acidente"], correct: 1 },
+        2: { diff: "Médio", q: "O que fazer ao ver cyberbullying?", opts: ["Ignorar", "Denunciar/Reportar", "Compartilhar", "Rir"], correct: 1 },
+        3: { diff: "Difícil", q: "Qual sinal comum na vítima?", opts: ["Isolamento", "Euforia", "Aumento de notas", "Fama"], correct: 0 },
+        4: { diff: "Muito Difícil", q: "Ameaças virtuais configuram:", opts: ["Nada", "Ato infracional/Crime", "Regra", "Brincadeira"], correct: 1 },
+        5: { diff: "Mestre", q: "Estratégia eficaz de longo prazo:", opts: ["Punição isolada", "Inteligência emocional e mediação", "Ignorar", "Trocar escola"], correct: 1 }
+    };
+
+    function initQuiz() {
+        if(quizRound > 5) {
