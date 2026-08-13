@@ -127,13 +127,13 @@
 
         .tab-btn {
             flex: 1;
-            min-width: 120px;
-            padding: 10px 14px;
+            min-width: 110px;
+            padding: 10px 12px;
             border: none;
             background: var(--btn-tab-bg);
             color: var(--text-dark);
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             border-radius: 10px;
             transition: all 0.3s ease;
@@ -177,7 +177,7 @@
             margin-bottom: 8px;
         }
 
-        /* Formulário de desabafo */
+        /* Formulários e Fieldsets */
         fieldset {
             border: 1.5px solid var(--border);
             border-radius: 12px;
@@ -233,11 +233,78 @@
             font-weight: bold;
             cursor: pointer;
             transition: opacity 0.2s, transform 0.2s;
+            margin-top: 10px;
         }
 
         .heart-btn:hover {
             opacity: 0.95;
             transform: scale(1.01);
+        }
+
+        /* Estilos do Quiz */
+        .quiz-question {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .quiz-question p {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--card-note-bg);
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: var(--btn-tab-hover);
+        }
+
+        .quiz-option input[type="radio"] {
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .result-box {
+            display: none;
+            background: var(--card-note-bg);
+            border: 2px solid var(--accent);
+            border-radius: 14px;
+            padding: 25px;
+            margin-top: 20px;
+            text-align: center;
+            animation: welcomeHug 0.5s ease;
+        }
+
+        .result-box h3 {
+            color: var(--accent);
+            font-size: 20px;
+            margin-top: 0;
+        }
+
+        .result-box p {
+            line-height: 1.6;
+            font-size: 15px;
+            color: var(--text-dark);
         }
 
         /* Jogo da Memória */
@@ -303,6 +370,7 @@
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="trocarAba('acolhimento', event)">Início & Abraço</button>
         <button class="tab-btn" onclick="trocarAba('desabafo', event)">Contar meu Problema</button>
+        <button class="tab-btn" onclick="trocarAba('quiz', event)">Quiz de Sentimentos</button>
         <button class="tab-btn" onclick="trocarAba('jogo', event)">Cantinho da Calma</button>
         <button class="tab-btn" onclick="trocarAba('pais-profissionais', event)">Acesso Família/Escola</button>
     </div>
@@ -314,7 +382,7 @@
         </div>
         <div class="card-note" style="border-left-color: var(--accent);">
             <h3>Como podemos te ajudar hoje?</h3>
-            <p>Sinta-se livre para navegar no menu acima. Vá até <strong>"Contar meu Problema"</strong> para desabafar com segurança, ou relaxe um pouquinho no nosso <strong>"Cantinho da Calma"</strong> com um jogo feito para tranquilizar sua mente.</p>
+            <p>Sinta-se livre para navegar no menu acima. Faça nosso <strong>"Quiz de Sentimentos"</strong> para refletir sobre seu dia, vá até <strong>"Contar meu Problema"</strong> para desabafar, ou relaxe no <strong>"Cantinho da Calma"</strong>.</p>
         </div>
     </div>
 
@@ -348,6 +416,113 @@
             </fieldset>
             <button type="submit" class="heart-btn">Enviar mensagem com carinho 💌</button>
         </form>
+    </div>
+
+    <div id="quiz-tab" class="tab-content">
+        <div class="card-note" style="border-left-color: var(--accent);">
+            <h3>Como está seu coração hoje? 🌿</h3>
+            <p>Responda às 10 perguntas abaixo com sinceridade. Lembre-se de que não existem respostas certas ou erradas, este é apenas um momento de autoconhecimento.</p>
+        </div>
+
+        <form id="quizForm" onsubmit="calcularResultadoQuiz(event)">
+            <div class="quiz-question">
+                <p>1. Como você descreveria a sua energia ao acordar hoje?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q1" value="1" required> Leve, com vontade de começar o dia.</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="2"> Um pouco cansado(a), mas levando no meu ritmo.</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="3"> Exausto(a) e sem motivação para sair da cama.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>2. Quando pensa nos seus estudos ou tarefas diárias, o que sente?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q2" value="1" required> Tranquilidade, sinto que consigo dar conta.</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="2"> Um pouco de pressão, mas é tolerável.</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="3"> Um aperto no peito e sensação de sobrecarga.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>3. Como tem sido a qualidade do seu sono nos últimos dias?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q3" value="1" required> Durmo bem e me sinto descansado(a).</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="2"> Demoro um pouco para dormir pensando na rotina.</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="3"> Tenho insônia ou acordo várias vezes na noite.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>4. Quando algo não sai como o planejado, qual costuma ser sua reação?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q4" value="1" required> Tento me adaptar e encontrar outra solução.</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="2"> Fico chateado(a), mas logo passa.</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="3"> Fico frustrado(a) e com vontade de desistir.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>5. Como você se sente na convivência com seus amigos ou colegas?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q5" value="1" required> Acolhido(a) e compreendido(a).</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="2"> Às vezes deslocado(a), mas no geral tudo bem.</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="3"> Isolado(a) ou com receio de julgamentos.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>6. Você tem conseguido tirar um momento do dia para relaxar e fazer o que ama?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q6" value="1" required> Sim, sempre reservo um tempo para mim.</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="2"> De vez em quando, quando sobra tempo.</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="3"> Quase nunca, sinto que estou sempre correndo.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>7. Como o seu corpo se sente quando você passa por momentos estressantes?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q7" value="1" required> Relaxado, consigo manter o controle respiration.</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="2"> Com leve tensão nos ombros ou dor de cabeça rápida.</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="3"> Tensão forte, dor de estômago ou inquietação constante.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>8. Com que frequência você compartilha seus sentimentos com alguém?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q8" value="1" required> Sempre converso com alguém em quem confio.</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="2"> Apenas quando a situação fica muito difícil.</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="3"> Guardo tudo para mim, prefiro não incomodar.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>9. Olhando para a semana que vem pela frente, qual é o sentimento predominante?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q9" value="1" required> Animação e curiosidade.</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="2"> Neutralidade, vivendo um dia de cada vez.</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="3"> Ansiedade e preocupação.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>10. Se pudesse dar um abraço em si mesmo(a) agora, o que diria?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q10" value="1" required>"Estou orgulhoso(a) do meu caminho!"</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="2"> "Está tudo bem ter dias difíceis, vou superar."</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="3"> "Preciso de um tempo e de ajuda para continuar."</label>
+                </div>
+            </div>
+
+            <button type="submit" class="heart-btn">Ver meu Resultado Acolhedor ✨</button>
+        </form>
+
+        <div id="quizResult" class="result-box">
+            <h3 id="resultTitle"></h3>
+            <p id="resultText"></p>
+            <button class="heart-btn" onclick="refazerQuiz()" style="max-width: 250px; margin: 15px auto 0;">Refazer Quiz 🔄</button>
+        </div>
     </div>
 
     <div id="jogo-tab" class="tab-content">
@@ -417,7 +592,44 @@
         }
     }
 
-    // Função de envio do formulário
+    // Lógica do Quiz
+    function calcularResultadoQuiz(event) {
+        event.preventDefault();
+        let totalScore = 0;
+
+        for (let i = 1; i <= 10; i++) {
+            const selected = document.querySelector(`input[name="q${i}"]:checked`);
+            if (selected) {
+                totalScore += parseInt(selected.value);
+            }
+        }
+
+        const resultBox = document.getElementById('quizResult');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultText = document.getElementById('resultText');
+
+        if (totalScore <= 14) {
+            resultTitle.innerText = "Coração em Harmonia 🌻";
+            resultText.innerText = "Você está conseguindo equilibrar bem suas emoções e lidar de forma saudável com a rotina. Continue cultivando bons hábitos, descansando e sendo essa presença positiva para si mesmo(a) e para quem está ao seu redor!";
+        } else if (totalScore <= 22) {
+            resultTitle.innerText = "Nuvens Passageiras 🌤️";
+            resultText.innerText = "Você tem momentos de equilíbrio, mas também está sentindo o peso do cansaço ou de pequenas preocupações acumuladas. Que tal dar uma pausa, praticar um hobby ou jogar no nosso 'Cantinho da Calma'? Lembre-se de não guardar tudo só para você.";
+        } else {
+            resultTitle.innerText = "Coração Precisando de um Abraço 💛";
+            resultText.innerText = "Seus sentimentos mostram que você está carregando um peso grande no peito e pode estar se sentindo sobrecarregado(a). Você não precisa passar por isso sozinho(a)! Aproveite a aba 'Contar meu Problema' para desabafar com seus pais ou com a equipe da escola. Pedir ajuda é um ato de coragem.";
+        }
+
+        document.getElementById('quizForm').style.display = 'none';
+        resultBox.style.display = 'block';
+    }
+
+    function refazerQuiz() {
+        document.getElementById('quizForm').reset();
+        document.getElementById('quizForm').style.display = 'block';
+        document.getElementById('quizResult').style.display = 'none';
+    }
+
+    // Função de envio do formulário de desabafo
     function enviarDesabafo(event) {
         event.preventDefault();
         const nome = document.getElementById('nomeUser').value || 'Anônimo';
@@ -433,7 +645,7 @@
     }
 
     // Lógica do Jogo da Memória
-    const icons = ['🫂', '😽', '🕊️', '🙏', '🫂', '😽', '🕊️', '🙏'];
+    const icons = ['☀️', '🌷', '🐥', '⭐', '☀️', '🌷', '🐥', '⭐'];
     let flippedCards = [];
     let matchedPairs = 0;
     let attempts = 0;
