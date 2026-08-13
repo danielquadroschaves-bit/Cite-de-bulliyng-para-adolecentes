@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal AcolheEstudo - Um abraço em forma de palavra</title>
     <style>
-        :root {
+        /* Variáveis do Tema Claro */
+        :root[data-theme="light"] {
             --warm-bg: #fffbf7;
             --warm-card: #ffffff;
             --primary: #e07a5f;
@@ -15,17 +16,33 @@
             --text-light: #7b6f6a;
             --border: #f0dec8;
             --shadow: rgba(224, 122, 95, 0.12);
+            --card-note-bg: #fdf7f2;
+            --input-bg: #fffbf9;
+            --btn-tab-bg: #fdf5ec;
+            --btn-tab-hover: #fae3d1;
         }
 
-        /* Animação criativa de entrada e saída (Efeito de pulsação de abraço) */
+        /* Variáveis do Tema Escuro */
+        :root[data-theme="dark"] {
+            --warm-bg: #1a1614;
+            --warm-card: #27221f;
+            --primary: #f28f79;
+            --secondary: #e76f51;
+            --accent: #2a9d8f;
+            --text-dark: #f3ece7;
+            --text-light: #c5b8b1;
+            --border: #443a34;
+            --shadow: rgba(0, 0, 0, 0.5);
+            --card-note-bg: #322b27;
+            --input-bg: #1e1a18;
+            --btn-tab-bg: #332b27;
+            --btn-tab-hover: #423833;
+        }
+
+        /* Animação criativa de entrada */
         @keyframes welcomeHug {
             0% { opacity: 0; transform: scale(0.96) translateY(12px); filter: blur(4px); }
             100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
-        }
-
-        @keyframes fadeOutHug {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.98) translateY(-10px); filter: blur(4px); }
         }
 
         body {
@@ -38,6 +55,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .portal-wrapper {
@@ -49,22 +67,44 @@
             box-shadow: 0 10px 35px var(--shadow);
             border: 2px solid var(--border);
             animation: welcomeHug 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
-        .portal-wrapper.exiting {
-            animation: fadeOutHug 0.5s ease forwards;
-        }
-
-        /* Cabeçalho acolhedor */
+        /* Cabeçalho e Botão de Tema */
         .header-box {
             text-align: center;
             margin-bottom: 25px;
+            position: relative;
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--btn-tab-bg);
+            color: var(--text-dark);
+            border: 1.5px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--btn-tab-hover);
+            transform: scale(1.03);
         }
 
         .header-box h1 {
             color: var(--primary);
             font-size: 26px;
             margin-bottom: 8px;
+            margin-top: 10px;
         }
 
         .header-box p {
@@ -75,7 +115,7 @@
             margin: 0 auto;
         }
 
-        /* Navegação por abas carinhosas */
+        /* Navegação por abas */
         .nav-tabs {
             display: flex;
             gap: 8px;
@@ -90,7 +130,7 @@
             min-width: 120px;
             padding: 10px 14px;
             border: none;
-            background: #fdf5ec;
+            background: var(--btn-tab-bg);
             color: var(--text-dark);
             cursor: pointer;
             font-size: 14px;
@@ -101,7 +141,7 @@
         }
 
         .tab-btn:hover {
-            background: #fae3d1;
+            background: var(--btn-tab-hover);
             transform: translateY(-1px);
         }
 
@@ -120,14 +160,15 @@
             animation: welcomeHug 0.5s ease;
         }
 
-        /* Cartões informativos de acolhimento */
+        /* Cartões informativos */
         .card-note {
-            background: #fdf7f2;
+            background: var(--card-note-bg);
             padding: 20px;
             border-radius: 14px;
             border-left: 5px solid var(--secondary);
             margin-bottom: 18px;
             line-height: 1.6;
+            transition: background 0.3s ease;
         }
 
         .card-note h3 {
@@ -136,13 +177,13 @@
             margin-bottom: 8px;
         }
 
-        /* Formulário carinhoso para desabafo */
+        /* Formulário de desabafo */
         fieldset {
             border: 1.5px solid var(--border);
             border-radius: 12px;
             padding: 18px;
             margin-bottom: 16px;
-            background: #fffdfb;
+            background: var(--warm-card);
         }
 
         legend {
@@ -171,8 +212,9 @@
             border-radius: 8px;
             box-sizing: border-box;
             font-size: 14px;
-            background: #fffbf9;
+            background: var(--input-bg);
             color: var(--text-dark);
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         textarea {
@@ -198,11 +240,11 @@
             transform: scale(1.01);
         }
 
-        /* Jogo da Memória Progressivo */
+        /* Jogo da Memória */
         .memory-status {
             display: flex;
             justify-content: space-between;
-            background: #fdf7f2;
+            background: var(--card-note-bg);
             padding: 10px 16px;
             border-radius: 10px;
             font-weight: bold;
@@ -212,9 +254,11 @@
 
         .memory-grid {
             display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             justify-content: center;
             margin: 15px auto;
+            max-width: 400px;
         }
 
         .memory-tile {
@@ -232,7 +276,7 @@
         }
 
         .memory-tile.flipped, .memory-tile.matched {
-            background-color: #ffffff;
+            background-color: var(--warm-card);
             border: 2px solid var(--primary);
             color: var(--text-dark);
         }
@@ -248,6 +292,10 @@
 
 <div class="portal-wrapper" id="portalContainer">
     <div class="header-box">
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="alternarTema()">
+            <span id="themeIcon">🌙</span> <span id="themeText">Modo Escuro</span>
+        </button>
+
         <h1>Portal AcolheEstudo 💛</h1>
         <p>Um espaço quentinho e seguro onde seus sentimentos importam. Você não está sozinho(a) nessa jornada; estamos aqui para te escutar com carinho.</p>
     </div>
@@ -259,7 +307,6 @@
         <button class="tab-btn" onclick="trocarAba('pais-profissionais', event)">Acesso Família/Escola</button>
     </div>
 
-    <!-- 1. INÍCIO -->
     <div id="acolhimento-tab" class="tab-content active">
         <div class="card-note">
             <h3>Você é muito especial para nós</h3>
@@ -271,7 +318,6 @@
         </div>
     </div>
 
-    <!-- 2. CONTAR MEU PROBLEMA (DESABAFO) -->
     <div id="desabafo-tab" class="tab-content">
         <div class="card-note">
             <h3>Desabafo Seguro</h3>
@@ -300,3 +346,149 @@
                     <textarea id="textoProblema" placeholder="Escreva aqui o que aconteceu, como você se sente..."></textarea>
                 </div>
             </fieldset>
+            <button type="submit" class="heart-btn">Enviar mensagem com carinho 💌</button>
+        </form>
+    </div>
+
+    <div id="jogo-tab" class="tab-content">
+        <div class="card-note">
+            <h3>Respire fundo e relaxe 🌸</h3>
+            <p>Combine os pares de ícones acolhedores para acalmar a mente.</p>
+        </div>
+        <div class="memory-status">
+            <span>Tentativas: <span id="attempts">0</span></span>
+            <span>Pares encontrados: <span id="matches">0</span>/4</span>
+        </div>
+        <div class="memory-grid" id="memoryGrid"></div>
+    </div>
+
+    <div id="pais-profissionais-tab" class="tab-content">
+        <div class="card-note" style="border-left-color: var(--primary);">
+            <h3>Área dos Responsáveis e Educadores</h3>
+            <p>Este espaço é destinado ao acompanhamento e leitura das mensagens enviadas pelos alunos e filhos, visando um atendimento humanizado e acolhedor.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Alternar Tema Claro / Escuro
+    function alternarTema() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        atualizarBotaoTema(newTheme);
+    }
+
+    function atualizarBotaoTema(theme) {
+        const icon = document.getElementById('themeIcon');
+        const text = document.getElementById('themeText');
+        if (theme === 'dark') {
+            icon.innerText = '☀️';
+            text.innerText = 'Modo Claro';
+        } else {
+            icon.innerText = '🌙';
+            text.innerText = 'Modo Escuro';
+        }
+    }
+
+    // Carregar tema salvo do usuário
+    (function carregarTemaSalvo() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        atualizarBotaoTema(savedTheme);
+    })();
+
+    // Função para troca de abas
+    function trocarAba(nomeAba, event) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        document.getElementById(nomeAba + '-tab').classList.add('active');
+        event.currentTarget.classList.add('active');
+
+        if (nomeAba === 'jogo') {
+            iniciarJogo();
+        }
+    }
+
+    // Função de envio do formulário
+    function enviarDesabafo(event) {
+        event.preventDefault();
+        const nome = document.getElementById('nomeUser').value || 'Anônimo';
+        const problema = document.getElementById('textoProblema').value;
+
+        if (!problema.trim()) {
+            alert('Por favor, escreva uma mensagem antes de enviar.');
+            return;
+        }
+
+        alert(`Obrigado por compartilhar, ${nome}. Sua mensagem foi enviada com sucesso e carinho! ❤️`);
+        document.getElementById('textoProblema').value = '';
+    }
+
+    // Lógica do Jogo da Memória
+    const icons = ['☀️', '🌷', '🐥', '⭐', '☀️', '🌷', '🐥', '⭐'];
+    let flippedCards = [];
+    let matchedPairs = 0;
+    let attempts = 0;
+
+    function iniciarJogo() {
+        const grid = document.getElementById('memoryGrid');
+        grid.innerHTML = '';
+        flippedCards = [];
+        matchedPairs = 0;
+        attempts = 0;
+        document.getElementById('attempts').innerText = attempts;
+        document.getElementById('matches').innerText = matchedPairs;
+
+        const shuffled = [...icons].sort(() => 0.5 - Math.random());
+
+        shuffled.forEach((symbol) => {
+            const tile = document.createElement('div');
+            tile.classList.add('memory-tile');
+            tile.dataset.symbol = symbol;
+            tile.innerText = symbol;
+            tile.addEventListener('click', () => virarCarta(tile));
+            grid.appendChild(tile);
+        });
+    }
+
+    function virarCarta(tile) {
+        if (flippedCards.length < 2 && !tile.classList.contains('flipped') && !tile.classList.contains('matched')) {
+            tile.classList.add('flipped');
+            flippedCards.push(tile);
+
+            if (flippedCards.length === 2) {
+                attempts++;
+                document.getElementById('attempts').innerText = attempts;
+                checarPar();
+            }
+        }
+    }
+
+    function checarPar() {
+        const [card1, card2] = flippedCards;
+        if (card1.dataset.symbol === card2.dataset.symbol) {
+            card1.classList.add('matched');
+            card2.classList.add('matched');
+            matchedPairs++;
+            document.getElementById('matches').innerText = matchedPairs;
+            flippedCards = [];
+        } else {
+            setTimeout(() => {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                flippedCards = [];
+            }, 800);
+        }
+    }
+</script>
+
+</body>
+</html>
