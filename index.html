@@ -657,53 +657,176 @@
   </style>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal de Apoio - Relato Organizado</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f7f9fc;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #dcdcdc;
+        }
 
-  <header>
-    <h1>Colégio Estadual Visconde de Guarapuava</h1>
-    <p>Canal de Escuta e Acolhimento do Estudante</p>
-  </header>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
 
-  <main>
-    <div class="form-card">
-      <h2>✍️ Espaço de Desabafo</h2>
-      <p class="intro-text">
-        Este é um canal seguro para você contar sobre qualquer problema, provocação, violência ou momento difícil que esteja vivenciando na escola ou na internet.
-      </p>
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
 
-      <form id="desabafo-form" onsubmit="enviarDesabafo(event)">
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        fieldset {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: var(--primary-color);
+            padding: 0 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Registro de Ocorrência</h2>
+    <p class="subtitle">Descreva o que aconteceu de forma organizada para que possamos ajudar.</p>
+
+    <form onsubmit="event.preventDefault(); alert('Relato enviado com segurança.');">
         
-        <label class="checkbox-group">
-          <input type="checkbox" id="anonimo" onchange="alternarAnonimato(this)">
-          Quero enviar este relato de forma totalmente ANÔNIMA
-        </label>
+        <!-- Bloco 1: Identificação Opcional -->
+        <fieldset>
+            <legend>1. Identificação (Opcional)</legend>
+            <div class="form-group">
+                <label for="nome">Seu Nome (Deixe em branco se preferir anonimato):</label>
+                <input type="text" id="nome" placeholder="Nome completo ou anônimo">
+            </div>
+        </fieldset>
 
-        <div class="form-group" id="campo-nome">
-          <label for="nome-aluno">Seu Nome e Turma:</label>
-          <input type="text" id="nome-aluno" placeholder="Ex: Gabriel Souza - 1º Ano A">
-        </div>
+        <!-- Bloco 2: Quando e Onde -->
+        <fieldset>
+            <legend>2. Quando e Onde Aconteceu</legend>
+            <div class="form-group">
+                <label for="data">Data do Ocorrido:</label>
+                <input type="date" id="data">
+            </div>
+            <div class="form-group">
+                <label for="local">Local da Ocorrência:</label>
+                <select id="local">
+                    <option value="">Selecione o local...</option>
+                    <option value="sala">Sala de Aula</option>
+                    <option value="patio">Pátio / Recreio</option>
+                    <option value="online">Ambiente Virtual / Redes Sociais</option>
+                    <option value="transporte">Transporte Escolar</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+        </fieldset>
 
-        <div class="form-group">
-          <label for="categoria">Qual o assunto principal do seu desabafo?</label>
-          <select id="categoria" required>
-            <option value="">Selecione uma opção...</option>
-            <option value="Bullying Escolar">Sofro piadas, humilhações ou agressões na escola</option>
-            <option value="Cyberbullying">Sofro ataques, exposição ou ofensas na internet</option>
-            <option value="Testemunha">Vi um colega sendo vítima de bullying ou maus-tratos</option>
-            <option value="Problema Pessoal">Preciso desabafar sobre um momento difícil/pessoal</option>
-          </select>
-        </div>
+        <!-- Bloco 3: O Relato -->
+        <fieldset>
+            <legend>3. O Fato</legend>
+            <div class="form-group">
+                <label for="descricao">Descreva os detalhes do que aconteceu com clareza:</label>
+                <textarea id="descricao" placeholder="Relate o que ocorreu, quem estava envolvido e com que frequência acontece..."></textarea>
+            </div>
+        </fieldset>
 
-        <div class="form-group">
-          <label for="relato-texto">Descreva aqui o seu problema:</label>
-          <textarea id="relato-texto" rows="6" placeholder="Escreva com calma o que aconteceu, quando foi e como você se sente..." required></textarea>
-        </div>
+        <button type="submit">Enviar Relato com Segurança</button>
+    </form>
+</div>
 
-        <button type="submit" class="btn-submit">Enviar Relato com Segurança</button>
-      </form>
-
-      <div id="mensagem-sucesso" class="success-card">
-        <h3>✓ Seu desabafo foi registrado!</h3>
-        <p id="texto-confirmaçao"></p>
-        
-        <div class="support-info">
-          <strong>Lembre-se:</strong> Se precisar de apoio imediato no colégio, você pode procurar a <strong>Equipe Pedagógica</strong> ou a <strong>Direção</strong>. Se preferir, ligue gratuitamente para o <strong>Disque 181 (Paraná)</strong> ou
+</body>
+</html>
