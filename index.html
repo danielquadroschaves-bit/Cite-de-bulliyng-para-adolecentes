@@ -1,784 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conscientização e Respeito | C.E. Visconde de Guarapuava</title>
-  <style>
-    /* ESTILOS GERAIS E RESPONSIVIDADE */
-    :root {
-      --primary: #00ff88ef; /* LightSkyBlue */
-      --primary-dark: #00ffdd;
-      --accent: #0a0a0a;
-      --bg-color: #000000;
-      --card-bg: #ffffff;
-      --text-color: #004561;.
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* CABEÇALHO */
-    header {
-      background-color: var(--primary);
-      padding: 1.5rem 1rem;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      border-bottom: 4px solid var(--primary-dark);
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      color: #790202;
-      margin-bottom: 0.3rem;
-    }
-
-    header p {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #800000;
-    }
-
-    /* NAVEGAÇÃO */
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      background-color: #000000;
-      padding: 10px;
-      flex-wrap: wrap;
-    }
-
-    .nav-btn {
-      background-color: var(--primary);
-      border: none;
-      color: #880000;
-      padding: 10px 18px;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-    }
-
-    .nav-btn:hover, .nav-btn.active {
-      background-color: var(--accent);
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    /* CONTEÚDO PRINCIPAL */
-    main {
-      flex: 1;
-      max-width: 1000px;
-      width: 100%;
-      margin: 1.5rem auto;
-      padding: 0 15px;
-    }
-
-    .tab-content {
-      display: none;
-      background-color: var(--card-bg);
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      border: 2px solid var(--primary);
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      color: var(--accent);
-      margin-bottom: 1rem;
-      border-bottom: 3px solid var(--primary);
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-
-    p {
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    /* CARDS INFORMATIVOS */
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1.5rem;
-    }
-
-    .card {
-      background: #f4fafc;
-      border: 1px solid var(--primary);
-      border-radius: 10px;
-      padding: 1.2rem;
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-    }
-
-    .card h3 {
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    /* JOGO DA MEMÓRIA */
-    .game-info {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .memory-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 500px) {
-      .memory-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .memory-card {
-      background-color: var(--primary);
-      aspect-ratio: 1;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      cursor: pointer;
-      user-select: none;
-      transition: transform 0.3s, background-color 0.3s;
-      border: 2px solid var(--primary-dark);
-    }
-
-    .memory-card.flipped, .memory-card.matched {
-      background-color: #ffffff;
-      border-color: var(--accent);
-      cursor: default;
-    }
-
-    .memory-card.matched {
-      background-color: #e6fffa;
-      border-color: #2e7d32;
-    }
-
-    .game-controls {
-      text-align: center;
-      margin-top: 1.5rem;
-    }
-
-    .btn-restart {
-      background-color: var(--accent);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .btn-restart:hover {
-      background-color: #800000;
-    }
-
-    /* INFORMAÇÕES DO PARANÁ */
-    .pr-info {
-      background-color: #e6f7ff;
-      border-left: 5px solid var(--accent);
-      padding: 1rem;
-      margin-top: 1rem;
-      border-radius: 4px;
-    }
-
-    /* RODAPÉ */
-    footer {
-      text-align: center;
-      padding: 1.2rem;
-      background-color: var(--primary);
-      color: #660000;
-      font-weight: 600;
-      margin-top: auto;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Colégio Estadual Visconde de Guarapuava</h1>
-    <p>Campanha de Conscientização e Combate ao Bullying</p>
-  </header>
-
-  <nav>
-    <button class="nav-btn active" onclick="openTab('inicio')">Início</button>
-    <button class="nav-btn" onclick="openTab('o-que-e')">O que é Bullying?</button>
-    <button class="nav-btn" onclick="openTab('tipos')">Tipos de Bullying</button>
-    <button class="nav-btn" onclick="openTab('jogo')">🎮 Jogo da Memória</button>
-    <button class="nav-btn" onclick="openTab('ajuda')">Apoio no Paraná</button>
-  </nav>
-
-  <main>
-    <section id="inicio" class="tab-content active">
-      <h2>Unidos pelo Respeito no Ambiente Escolar</h2>
-      <p>Bem-vindo ao espaço de conscientização do <strong>Colégio Estadual Visconde de Guarapuava</strong>. Nosso objetivo é promover um ambiente escolar seguro, acolhedor e livre de qualquer forma de discriminação ou violência.</p>
-      
-      <div class="card" style="margin-top: 1.5rem; text-align: center;">
-        <h3>🤝 Compromisso da Nossa Comunidade</h3>
-        <p>Brincadeira de verdade faz todo mundo rir. Quando faz alguém chorar, isolar-se ou sentir medo, trata-se de bullying. Faça a sua parte!</p>
-      </div>
-    </section>
-
-    <section id="o-que-e" class="tab-content">
-      <h2>Entendendo o Conceito</h2>
-      <p>O <strong>bullying</strong> é caracterizado por atitudes agressivas, intencionais e repetitivas, adotadas por um ou mais estudantes contra outro, sem motivação evidente, causando dor, angústia e sofrimento.</p>
-      
-      <div class="grid-cards">
-        <div class="card">
-          <h3>Intencionalidade</h3>
-          <p>O agressor tem o objetivo consciente de machucar ou humilhar a vítima.</p>
-        </div>
-        <div class="card">
-          <h3>Repetição</h3>
-          <p>Não é um fato isolado; as agressões acontecem de forma frequente ao longo do tempo.</p>
-        </div>
-        <div class="card">
-          <h3>Desequilíbrio de Poder</h3>
-          <p>A vítima sente dificuldade em se defender devido a diferenças de força física, popularidade ou apoio social.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="tipos" class="tab-content">
-      <h2>Principais Formas de Agressão</h2>
-      <div class="grid-cards">
-        <div class="card">
-          <h3>👊 Físico</h3>
-          <p>Bater, empurrar, chutar, tomar ou estragar pertences de outros alunos.</p>
-        </div>
-        <div class="card">
-          <h3>🗣️ Verbal</h3>
-          <p>Apelidos pejorativos, xingamentos, piadas de mau gosto e zombarias.</p>
-        </div>
-        <div class="card">
-          <h3>👥 Social / Psicológico</h3>
-          <p>Ignorar propositalmente, excluir do grupo, espalhar boatos e fofocas.</p>
-        </div>
-        <div class="card">
-          <h3>📱 Cyberbullying</h3>
-          <p>Ofensas, exposição de fotos sem autorização ou criação de perfis falsos nas redes sociais e jogos.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="jogo" class="tab-content">
-      <h2>Jogo da Memória: Atitudes de Respeito</h2>
-      <p style="text-align: center;">Encontre os pares de símbolos que representam boas práticas e empatia na escola!</p>
-
-      <div class="game-info">
-        <p>Tentativas: <span id="tries-count">0</span> | Pares Encontrados: <span id="matches-count">0</span>/6</p>
-      </div>
-
-      <div class="memory-grid" id="memory-grid">
-        </div>
-
-      <div class="game-controls">
-        <button class="btn-restart" onclick="initGame()">Reiniciar Jogo</button>
-      </div>
-    </section>
-
-    <section id="ajuda" class="tab-content">
-      <h2>Canais de Ajuda e Apoio no Paraná</h2>
-      <p>Se você está sofrendo bullying ou presenciou alguma situação no colégio, não guarde para si. Contar para um adulto de confiança é o primeiro passo.</p>
-
-      <div class="pr-info">
-        <h3>🏫 No Colégio Visconde de Guarapuava</h3>
-        <p>Procure a <strong>Equipe Pedagógica</strong>, a <strong>Direção</strong> ou um <strong>Professor de confiança</strong>. A escola está pronta para ouvir e ajudar sem julgamentos.</p>
-      </div>
-
-      <div class="grid-cards" style="margin-top: 1rem;">
-        <div class="card">
-          <h3>📞 Disque 181 (Paraná)</h3>
-          <p>Disque Denúncia do Estado do Paraná. O atendimento é gratuito e garante o anonimato.</p>
-        </div>
-        <div class="card">
-          <h3>📞 Disque 100</h3>
-          <p>Canal nacional para denúncias de violações de direitos humanos de crianças e adolescentes.</p>
-        </div>
-        <div class="card">
-          <h3>⚖️ BAPD / Patrulha Escolar</h3>
-          <p>A Batalhão de Patrulha Escolar Comunitária (BPEC) atua em parceria com as escolas estaduais do Paraná para garantir a segurança no ambiente escolar.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; Colégio Estadual Visconde de Guarapuava | Juntos Promovendo a Empatia</p>
-  </footer>
-
-  <script>
-    // TROCA DE ABAS
-    function openTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-
-      document.getElementById(tabId).classList.add('active');
-
-      const activeBtn = Array.from(document.querySelectorAll('.nav-btn'))
-        .find(btn => btn.getAttribute('onclick').includes(tabId));
-      if (activeBtn) activeBtn.classList.add('active');
-    }
-
-    // LÓGICA DO JOGO DA MEMÓRIA
-    const icons = ['🤝', '💙', '🕊️', '🛡️', '☀️', '💬'];
-    let cardsData = [...icons, ...icons];
-    let flippedCards = [];
-    let matchedPairs = 0;
-    let tries = 0;
-    let lockBoard = false;
-
-    function shuffle(array) {
-      return array.sort(() => Math.random() - 0.5);
-    }
-
-    function initGame() {
-      const grid = document.getElementById('memory-grid');
-      grid.innerHTML = '';
-      cardsData = shuffle([...icons, ...icons]);
-      flippedCards = [];
-      matchedPairs = 0;
-      tries = 0;
-      lockBoard = false;
-
-      document.getElementById('tries-count').innerText = tries;
-      document.getElementById('matches-count').innerText = matchedPairs;
-
-      cardsData.forEach((symbol, index) => {
-        const card = document.createElement('div');
-        card.classList.add('memory-card');
-        card.dataset.symbol = symbol;
-        card.dataset.index = index;
-        card.innerText = '❓';
-        card.onclick = () => flipCard(card);
-        grid.appendChild(card);
-      });
-    }
-
-    function flipCard(card) {
-      if (lockBoard || card.classList.contains('flipped') || card.classList.contains('matched')) return;
-
-      card.classList.add('flipped');
-      card.innerText = card.dataset.symbol;
-      flippedCards.push(card);
-
-      if (flippedCards.length === 2) {
-        tries++;
-        document.getElementById('tries-count').innerText = tries;
-        checkMatch();
-      }
-    }
-
-    function checkMatch() {
-      const [card1, card2] = flippedCards;
-
-      if (card1.dataset.symbol === card2.dataset.symbol) {
-        card1.classList.add('matched');
-        card2.classList.add('matched');
-        matchedPairs++;
-        document.getElementById('matches-count').innerText = matchedPairs;
-        flippedCards = [];
-
-        if (matchedPairs === icons.length) {
-          setTimeout(() => {
-            alert(`Parabéns! Você completou o jogo em ${tries} tentativas!`);
-          }, 300);
-        }
-      } else {
-        lockBoard = true;
-        setTimeout(() => {
-          card1.classList.remove('flipped');
-          card2.classList.remove('flipped');
-          card1.innerText = '❓';
-          card2.innerText = '❓';
-          flippedCards = [];
-          lockBoard = false;
-        }, 1000);
-      }
-    }
-
-    // Inicializa o jogo ao carregar
-    initGame();
-  </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz de Conscientização sobre Bullying | C.E. Visconde de Guarapuava</title>
-  <style>
-    /* VARIÁVEIS E ESTILOS GERAIS */
-    :root {
-      --primary: #87CEFA; /* LightSkyBlue */
-      --primary-dark: #0099e6;
-      --accent: #005b96;
-      --bg-color: #f0f8ff;
-      --card-bg: #ffffff;
-      --text-color: #2c3e50;
-      --correct: #2e7d32;
-      --wrong: #c62828;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* CABEÇALHO RESPONSIVO */
-    header {
-      width: 100%;
-      background-color: var(--primary);
-      padding: 1.5rem 1rem;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      border-bottom: 4px solid var(--primary-dark);
-    }
-
-    header h1 {
-      font-size: 1.6rem;
-      color: #003366;
-      margin-bottom: 0.2rem;
-    }
-
-    header p {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #004080;
-    }
-
-    /* CONTAINER PRINCIPAL DO QUIZ */
-    main {
-      width: 100%;
-      max-width: 700px;
-      padding: 20px;
-      margin: auto;
-    }
-
-    .quiz-card {
-      background-color: var(--card-bg);
-      border: 2px solid var(--primary);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-      position: relative;
-    }
-
-    /* BARRA DE PROGRESSO */
-    .progress-bar {
-      width: 100%;
-      background-color: #e0e0e0;
-      height: 10px;
-      border-radius: 5px;
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background-color: var(--accent);
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    /* ELEMENTOS DA PERGUNTA */
-    .question-title {
-      font-size: 1.2rem;
-      color: var(--accent);
-      margin-bottom: 1.2rem;
-      font-weight: bold;
-      line-height: 1.4;
-    }
-
-    .options-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .option-btn {
-      background-color: #f4fafc;
-      border: 2px solid var(--primary);
-      padding: 14px 16px;
-      border-radius: 10px;
-      text-align: left;
-      font-size: 1rem;
-      color: var(--text-color);
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .option-btn:hover:not(:disabled) {
-      background-color: var(--primary);
-      color: #003366;
-      transform: translateX(4px);
-    }
-
-    .option-btn:disabled {
-      cursor: default;
-    }
-
-    .option-btn.correct {
-      background-color: #e8f5e9;
-      border-color: var(--correct);
-      color: var(--correct);
-    }
-
-    .option-btn.wrong {
-      background-color: #ffebee;
-      border-color: var(--wrong);
-      color: var(--wrong);
-    }
-
-    /* CAIXA DE FEEDBACK E BOTÃO PRÓXIMO */
-    .feedback-box {
-      margin-top: 1.2rem;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      display: none;
-    }
-
-    .btn-action {
-      margin-top: 1.5rem;
-      background-color: var(--accent);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      transition: background-color 0.2s;
-    }
-
-    .btn-action:hover {
-      background-color: #004080;
-    }
-
-    /* TELA DE RESULTADO FINAL */
-    .result-screen {
-      text-align: center;
-      display: none;
-    }
-
-    .result-screen h2 {
-      color: var(--accent);
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .score-badge {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #003366;
-      margin: 1rem 0;
-    }
-
-    /* RODAPÉ */
-    footer {
-      width: 100%;
-      text-align: center;
-      padding: 1rem;
-      background-color: var(--primary);
-      color: #003366;
-      font-weight: 600;
-      margin-top: auto;
-      font-size: 0.85rem;
-    }
-
-    /* ADAPTAÇÕES PARA TELAS PEQUENAS (CELULARES) */
-    @media (max-width: 480px) {
-      .quiz-card {
-        padding: 1.2rem;
-      }
-
-      .question-title {
-        font-size: 1.05rem;
-      }
-
-      .option-btn {
-        font-size: 0.9rem;
-        padding: 12px;
-      }
-    }
-  </style>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conscientização e Apoio Escolar - PR</title>
+    <title>Portal AcolheEstudo - Um abraço em forma de palavra</title>
     <style>
         :root {
-            --primary: #4a90e2;
-            --success: #2ecc71;
-            --bg: #f4f6f9;
-            --card-bg: #ffffff;
-            --text: #333333;
-            --border: #e0e0e0;
+            --warm-bg: #fffbf7;
+            --warm-card: #ffffff;
+            --primary: #e07a5f;
+            --secondary: #f4a261;
+            --accent: #2a9d8f;
+            --text-dark: #4a403b;
+            --text-light: #7b6f6a;
+            --border: #f0dec8;
+            --shadow: rgba(224, 122, 95, 0.12);
+        }
+
+        /* Animação criativa de entrada e saída (Efeito de pulsação de abraço) */
+        @keyframes welcomeHug {
+            0% { opacity: 0; transform: scale(0.96) translateY(12px); filter: blur(4px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+
+        @keyframes fadeOutHug {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.98) translateY(-10px); filter: blur(4px); }
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--warm-bg);
+            color: var(--text-dark);
             margin: 0;
             padding: 20px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            min-height: 100vh;
         }
 
-        .container {
+        .portal-wrapper {
             width: 100%;
-            max-width: 750px;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin-bottom: 20px;
+            max-width: 760px;
+            background: var(--warm-card);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px var(--shadow);
+            border: 2px solid var(--border);
+            animation: welcomeHug 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .tabs {
+        .portal-wrapper.exiting {
+            animation: fadeOutHug 0.5s ease forwards;
+        }
+
+        /* Cabeçalho acolhedor */
+        .header-box {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header-box h1 {
+            color: var(--primary);
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .header-box p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.5;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navegação por abas carinhosas */
+        .nav-tabs {
             display: flex;
-            flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 25px;
             border-bottom: 2px solid var(--border);
             padding-bottom: 12px;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
             flex: 1;
-            min-width: 110px;
-            padding: 10px;
+            min-width: 120px;
+            padding: 10px 14px;
             border: none;
-            background: #e9ecef;
+            background: #fdf5ec;
+            color: var(--text-dark);
             cursor: pointer;
             font-size: 14px;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: 0.2s;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s ease;
             text-align: center;
+        }
+
+        .tab-btn:hover {
+            background: #fae3d1;
+            transform: translateY(-1px);
         }
 
         .tab-btn.active {
             background: var(--primary);
             color: white;
+            box-shadow: 0 4px 12px rgba(224, 122, 95, 0.3);
         }
 
-        .game-section {
+        .tab-content {
             display: none;
         }
 
-        .game-section.active {
+        .tab-content.active {
             display: block;
+            animation: welcomeHug 0.5s ease;
         }
 
-        h2 {
+        /* Cartões informativos de acolhimento */
+        .card-note {
+            background: #fdf7f2;
+            padding: 20px;
+            border-radius: 14px;
+            border-left: 5px solid var(--secondary);
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .card-note h3 {
             color: var(--primary);
             margin-top: 0;
-        }
-
-        .info-box {
-            background: #f8f9fa;
-            padding: 15px;
-            border-left: 4px solid var(--primary);
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
             margin-bottom: 8px;
         }
 
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #f8f9fa;
-            padding: 10px 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
+        /* Formulário carinhoso para desabafo */
         fieldset {
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 15px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 16px;
+            background: #fffdfb;
         }
 
         legend {
             font-weight: bold;
             color: var(--primary);
-            padding: 0 5px;
+            padding: 0 8px;
+            font-size: 14px;
         }
 
-        .form-group {
+        .form-row {
             margin-bottom: 12px;
         }
 
@@ -786,153 +160,143 @@
             display: block;
             font-size: 13px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            color: var(--text-dark);
         }
 
-        input[type="text"], input[type="date"], select, textarea {
+        input[type="text"], select, textarea {
             width: 100%;
-            padding: 8px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
+            padding: 10px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
             box-sizing: border-box;
             font-size: 14px;
+            background: #fffbf9;
+            color: var(--text-dark);
         }
 
         textarea {
+            height: 100px;
             resize: vertical;
-            height: 90px;
         }
 
-        button.action-btn {
+        .heart-btn {
             width: 100%;
-            padding: 10px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            padding: 12px;
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .heart-btn:hover {
+            opacity: 0.95;
+            transform: scale(1.01);
+        }
+
+        /* Jogo da Memória Progressivo */
+        .memory-status {
+            display: flex;
+            justify-content: space-between;
+            background: #fdf7f2;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .memory-grid {
+            display: grid;
+            gap: 10px;
+            justify-content: center;
+            margin: 15px auto;
+        }
+
+        .memory-tile {
+            background-color: var(--secondary);
+            aspect-ratio: 1;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: transparent;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+        .memory-tile.flipped, .memory-tile.matched {
+            background-color: #ffffff;
+            border: 2px solid var(--primary);
+            color: var(--text-dark);
+        }
+
+        .memory-tile.matched {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('inicio', event)">Início</button>
-        <button class="tab-btn" onclick="switchTab('o-que-e', event)">O que é</button>
-        <button class="tab-btn" onclick="switchTab('tipos', event)">Tipos</button>
-        <button class="tab-btn" onclick="switchTab('apoio-pr', event)">Apoio Paraná</button>
-        <button class="tab-btn" onclick="switchTab('quiz', event)">Quiz Progressivo</button>
+<div class="portal-wrapper" id="portalContainer">
+    <div class="header-box">
+        <h1>Portal AcolheEstudo 💛</h1>
+        <p>Um espaço quentinho e seguro onde seus sentimentos importam. Você não está sozinho(a) nessa jornada; estamos aqui para te escutar com carinho.</p>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="trocarAba('acolhimento', event)">Início & Abraço</button>
+        <button class="tab-btn" onclick="trocarAba('desabafo', event)">Contar meu Problema</button>
+        <button class="tab-btn" onclick="trocarAba('jogo', event)">Cantinho da Calma</button>
+        <button class="tab-btn" onclick="trocarAba('pais-profissionais', event)">Acesso Família/Escola</button>
     </div>
 
     <!-- 1. INÍCIO -->
-    <div id="inicio-section" class="game-section active">
-        <h2>Bem-vindo ao Portal de Conscientização</h2>
-        <p>Este espaço foi criado para informar, orientar e combater práticas agressivas no ambiente escolar e social.</p>
-        <div class="info-box">
-            <p>Utilize o menu superior para navegar pelas definições, conhecer os tipos de agressão, testar seus conhecimentos no Quiz ou acessar a rede de apoio específica do estado do Paraná com canal de relato seguro.</p>
+    <div id="acolhimento-tab" class="tab-content active">
+        <div class="card-note">
+            <h3>Você é muito especial para nós</h3>
+            <p>Problemas com amigos, colegas ou sentimentos difíceis de carregar no peito acontecem com todo mundo, mas você não precisa passar por isso em silêncio. Este portal liga você a pessoas que te amam (pais) e profissionais prontos para ajudar com o coração aberto.</p>
+        </div>
+        <div class="card-note" style="border-left-color: var(--accent);">
+            <h3>Como podemos te ajudar hoje?</h3>
+            <p>Sinta-se livre para navegar no menu acima. Vá até <strong>"Contar meu Problema"</strong> para desabafar com segurança, ou relaxe um pouquinho no nosso <strong>"Cantinho da Calma"</strong> com um jogo feito para tranquilizar sua mente.</p>
         </div>
     </div>
 
-    <!-- 2. O QUE É O BULLYING -->
-    <div id="o-que-e-section" class="game-section">
-        <h2>O que é o Bullying?</h2>
-        <div class="info-box">
-            <p>O <strong>bullying</strong> caracteriza-se por atos de violência física ou psicológica, intencionais e repetitivos, praticados por um ou mais indivíduos contra uma ou mais vítimas, sem motivação óbvia, gerando sofrimento, medo e a sensação de intimidação ou exclusão.</p>
+    <!-- 2. CONTAR MEU PROBLEMA (DESABAFO) -->
+    <div id="desabafo-tab" class="tab-content">
+        <div class="card-note">
+            <h3>Desabafo Seguro</h3>
+            <p>Escreva aqui o que está te afligindo. Suas palavras serão tratadas com total carinho e encaminhadas para nossa rede de apoio integrada de pais e profissionais responsáveis.</p>
         </div>
-    </div>
-
-    <!-- 3. TIPOS DE BULLYING -->
-    <div id="tipos-section" class="game-section">
-        <h2>Tipos de Bullying</h2>
-        <ul>
-            <li><strong>Verbal:</strong> Insultos, xingamentos, apelidos pejorativos, humilhações públicas e ameaças.</li>
-            <li><strong>Físico:</strong> Empurrões, socos, puxões, chutes ou destruição de pertences pessoais.</li>
-            <li><strong>Social / Relacional:</strong> Exclusão intencional de grupos, isolamento forçado e difamação de boatos.</li>
-            <li><strong>Psicológico:</strong> Perseguição, chantagem, manipulação e hostilização contínua.</li>
-            <li><strong>Cyberbullying:</strong> Agressões praticadas por meio de ambientes virtuais, redes sociais e aplicativos de mensagens.</li>
-        </ul>
-    </div>
-
-    <!-- 4. APOIO PARANÁ (SÓ O DESABAFO) -->
-    <div id="apoio-pr-section" class="game-section">
-        <h2>Rede de Apoio - Paraná</h2>
-        <p>Espaço de acolhimento regional e canal seguro para registro de ocorrência no estado.</p>
-        
-        <div class="info-box">
-            <p><strong>Canais de ajuda no PR:</strong> Secretaria de Estado da Educação (Seed-PR) via orientações pedagógicas nas escolas ou Disque Direitos Humanos (Disque 100).</p>
-        </div>
-
-        <hr style="border:0; border-top:1px solid var(--border); margin:20px 0;">
-
-        <h3>Área de Desabafo / Registro Seguro</h3>
-        <form onsubmit="event.preventDefault(); alert('Relato enviado com segurança para a rede de apoio do Paraná.');">
+        <form onsubmit="enviarDesabafo(event)">
             <fieldset>
-                <legend>Identificação Opcional</legend>
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" placeholder="Anônimo se preferir">
+                <legend>Como podemos te chamar?</legend>
+                <div class="form-row">
+                    <label for="nomeUser">Seu Nome ou Apelido Carinhoso:</label>
+                    <input type="text" id="nomeUser" placeholder="Seu nome (ou anônimo)">
+                </div>
+                <div class="form-row">
+                    <label for="canalDestino">Quem você gostaria que lesse primeiro?</label>
+                    <select id="canalDestino">
+                        <option value="pais">Apenas meus Pais / Responsáveis</option>
+                        <option value="profissionais">Profissionais de Apoio Escolar / Psicólogo</option>
+                        <option value="ambos">Ambos (Pais e Profissionais)</option>
+                    </select>
                 </div>
             </fieldset>
             <fieldset>
-                <legend>O Ocorrido</legend>
-                <div class="form-group">
-                    <label for="cidade">Sua Cidade no PR:</label>
-                    <input type="text" id="cidade" placeholder="Ex: Curitiba, Londrina, Maringá...">
-                </div>
-                <div class="form-group">
-                    <label for="descricao">Descreva o problema:</label>
-                    <textarea id="descricao" placeholder="Relate os fatos com clareza..."></textarea>
+                <legend>O que está apertando seu coração?</legend>
+                <div class="form-row">
+                    <label for="textoProblema">Conte com calma, no seu tempo:</label>
+                    <textarea id="textoProblema" placeholder="Escreva aqui o que aconteceu, como você se sente..."></textarea>
                 </div>
             </fieldset>
-            <button class="action-btn" type="submit">Enviar Relato</button>
-        </form>
-    </div>
-
-    <!-- 5. QUIZ PROGRESSIVO -->
-    <div id="quiz-section" class="game-section">
-        <div class="status-bar">
-            <span>Rodada: <span id="quiz-level">1</span>/5</span>
-            <span>Dificuldade: <span id="quiz-diff">Fácil</span></span>
-        </div>
-        <div id="quiz-box">
-            <div id="quiz-q" style="font-weight:600; margin-bottom:15px;">Carregando...</div>
-            <div id="quiz-opts" style="display:flex; flex-direction:column; gap:8px;"></div>
-        </div>
-        <button class="action-btn" style="display:none;" id="next-quiz-btn" onclick="nextQuizLevel()">Próxima Rodada do Quiz</button>
-    </div>
-</div>
-
-<script>
-    function switchTab(tabId, evt) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active'));
-        
-        const map = {
-            'inicio': 'inicio-section',
-            'o-que-e': 'o-que-e-section',
-            'tipos': 'tipos-section',
-            'apoio-pr': 'apoio-pr-section',
-            'quiz': 'quiz-section'
-        };
-        
-        evt.target.classList.add('active');
-        document.getElementById(map[tabId]).classList.add('active');
-        if(tabId === 'quiz') initQuiz();
-    }
-
-    // Quiz Progressivo com dificuldade crescente
-    let quizRound = 1;
-    const quizData = {
-        1: { diff: "Fácil", q: "Excluir alguém de conversas propositalmente é:", opts: ["Brincadeira", "Bullying Relacional", "Normal", "Acidente"], correct: 1 },
-        2: { diff: "Médio", q: "O que fazer ao ver cyberbullying?", opts: ["Ignorar", "Denunciar/Reportar", "Compartilhar", "Rir"], correct: 1 },
-        3: { diff: "Difícil", q: "Qual sinal comum na vítima?", opts: ["Isolamento", "Euforia", "Aumento de notas", "Fama"], correct: 0 },
-        4: { diff: "Muito Difícil", q: "Ameaças virtuais configuram:", opts: ["Nada", "Ato infracional/Crime", "Regra", "Brincadeira"], correct: 1 },
-        5: { diff: "Mestre", q: "Estratégia eficaz de longo prazo:", opts: ["Punição isolada", "Inteligência emocional e mediação", "Ignorar", "Trocar escola"], correct: 1 }
-    };
-
-    function initQuiz() {
-        if(quizRound > 5) {
