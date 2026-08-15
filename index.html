@@ -643,80 +643,32 @@
         alert(`Obrigado por compartilhar, ${nome}. Sua mensagem foi enviada com sucesso e carinho! ❤️`);
         document.getElementById('textoProblema').value = '';
     }
-
-    // Lógica do Jogo da Memória🙏', '🤝', '🕊️', '🤝', '🙏', '🕊️'];
-    let flippedCards = [];
-    let matchedPairs = 0;
-    let attempts = 0;
-
-    function iniciarJogo() {
-        const grid = document.getElementById('memoryGrid');
-        grid.innerHTML = '';
-        flippedCards = [];
-        matchedPairs = 0;
-        attempts = 0;
-        document.getElementById('attempts').innerText = attempts;
-        document.getElementById('matches').innerText = matchedPairs;
-
-        const shuffled = [...icons].sort(() => 0.5 - Math.random());
-
-        shuffled.forEach((symbol) => {
-            const tile = document.createElement('div');
-            tile.classList.add('memory-tile');
-            tile.dataset.symbol = symbol;
-            tile.innerText = symbol;
-            tile.addEventListener('click', () => virarCarta(tile));
-            grid.appendChild(tile);
-        });
-    }
-
-    function virarCarta(tile) {
-        if (flippedCards.length < 2 && !tile.classList.contains('flipped') && !tile.classList.contains('matched')) {
-            tile.classList.add('flipped');
-            flippedCards.push(tile);
-
-            if (flippedCards.length === 2) {
-                attempts++;
-                document.getElementById('attempts').innerText = attempts;
-                checarPar();
-            }
-        }
-    }
-
-    function checarPar() {
-        const [card1, card2] = flippedCards;
-        if (card1.dataset.symbol === card2.dataset.symbol) {
-            card1.classList.add('matched');
-            card2.classList.add('matched');
-            matchedPairs++;
-            document.getElementById('matches').innerText = matchedPairs;
-            flippedCards = [];
-        } else {
-            setTimeout(() => {
-                card1.classList.remove('flipped');
-                card2.classList.remove('flipped');
-                flippedCards = [];
-            }, 800);
-        }
-    }
-</script>
-
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Memória</title>
+    <title>Site com Conta no Canto</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Jogo da Memória</h1>
+    <header class="header">
+        <h1>Meu Site</h1>
+    </header>
 
-    <div id="game-board" class="board"></div>
+    <main class="content">
+        <p>Conteúdo do site aqui...</p>
+    </main>
 
-    <script src="script.js"></script>
+    <!-- Box da conta no canto inferior direito -->
+    <div class="account-box">
+        <img src="https://via.placeholder.com/40" alt="Foto de perfil">
+        <div class="account-info">
+            <span class="account-name">Adrielly</span>
+            <a href="#" class="account-link">Ver perfil</a>
+        </div>
+    </div>
+
 </body>
 </html>
