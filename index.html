@@ -657,116 +657,149 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Menu -->
-    <nav class="menu">
-        <a href="index.html">Início</a>
-        <a href="calma.html">Cantinho da Calma</a>
-        <a href="bullying.html">Bullying</a>
-        <a href="contato.html">Contato</a>
-    </nav>
-
-    <h1>Bem-vinda ao seu site, Adrielly</h1>
-    <p>Escolha uma aba no menu acima.</p>
-
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cantinho da Calma</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Site com Abas Funcionais</title>
+
+    <style>
+        /* ===========================
+           ESTILO GERAL
+        =========================== */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===========================
+           MENU SUPERIOR
+        =========================== */
+        nav {
+            background: #4a90e2;
+            padding: 12px;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===========================
+           CONTEÚDO DAS ABAS
+        =========================== */
+        .aba {
+            display: none;
+            padding: 20px;
+        }
+
+        .ativa {
+            display: block;
+        }
+
+        /* ===========================
+           CONTA NO CANTO
+        =========================== */
+        .account-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ffffff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .account-box img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .account-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .account-name {
+            font-weight: bold;
+        }
+
+        .account-link {
+            font-size: 12px;
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        .account-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="menu">
-        <a href="index.html">Início</a>
-        <a href="calma.html">Cantinho da Calma</a>
-        <a href="bullying.html">Bullying</a>
-        <a href="contato.html">Contato</a>
+    <!-- MENU -->
+    <nav>
+        <a onclick="abrirAba('inicio')">Início</a>
+        <a onclick="abrirAba('calma')">Cantinho da Calma</a>
+        <a onclick="abrirAba('bullying')">Bullying</a>
+        <a onclick="abrirAba('contato')">Contato</a>
     </nav>
 
-    <h1>Cantinho da Calma</h1>
-    <p>Respire fundo… aqui é seu espaço seguro.</p>
+    <!-- ABAS DO SITE -->
+    <div id="inicio" class="aba ativa">
+        <h1>Bem-vinda, Adrielly!</h1>
+        <p>Escolha uma aba no menu acima para navegar.</p>
+    </div>
+
+    <div id="calma" class="aba">
+        <h1>Cantinho da Calma</h1>
+        <p>Respire fundo… aqui é seu espaço seguro.</p>
+    </div>
+
+    <div id="bullying" class="aba">
+        <h1>Sobre o Bullying</h1>
+        <p>Informações importantes para ajudar adolescentes.</p>
+    </div>
+
+    <div id="contato" class="aba">
+        <h1>Contato</h1>
+        <p>Fale com a gente.</p>
+    </div>
+
+    <!-- CONTA NO CANTO INFERIOR DIREITO -->
+    <div class="account-box">
+        <img src="https://via.placeholder.com/40" alt="Foto de perfil">
+        <div class="account-info">
+            <span class="account-name">Adrielly</span>
+            <a href="#" class="account-link">Ver perfil</a>
+        </div>
+    </div>
+
+    <script>
+        /* ===========================
+           FUNÇÃO PARA ABRIR ABAS
+        =========================== */
+        function abrirAba(nome) {
+            const abas = document.querySelectorAll('.aba');
+            abas.forEach(aba => aba.classList.remove('ativa'));
+            document.getElementById(nome).classList.add('ativa');
+        }
+    </script>
 
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bullying</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <nav class="menu">
-        <a href="index.html">Início</a>
-        <a href="calma.html">Cantinho da Calma</a>
-        <a href="bullying.html">Bullying</a>
-        <a href="contato.html">Contato</a>
-    </nav>
-
-    <h1>Sobre o Bullying</h1>
-    <p>Informações importantes para ajudar adolescentes.</p>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <nav class="menu">
-        <a href="index.html">Início</a>
-        <a href="calma.html">Cantinho da Calma</a>
-        <a href="bullying.html">Bullying</a>
-        <a href="contato.html">Contato</a>
-    </nav>
-
-    <h1>Contato</h1>
-    <p>Fale com a gente.</p>
-
-</body>
-</html>
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-/* Menu */
-.menu {
-    background: #4a90e2;
-    padding: 10px;
-    display: flex;
-    gap: 20px;
-}
-
-.menu a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.menu a:hover {
-    text-decoration: underline;
-}
-
-h1 {
-    margin: 20px;
-}
-
-p {
-    margin: 20px;
-    font-size: 18px;
-}
