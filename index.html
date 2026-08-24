@@ -413,7 +413,6 @@
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="trocarAba('inicio', event)">Início</button>
         <button class="tab-btn" onclick="trocarAba('desabafo', event)">Contar meu Problema</button>
-
         <button class="tab-btn" onclick="trocarAba('quiz', event)">Quiz de Sentimentos</button>
         <button class="tab-btn" onclick="trocarAba('calma', event)">Cantinho da Calma</button>
         <button class="tab-btn" onclick="trocarAba('pais-profissionais', event)">Família e Escola</button>
@@ -468,25 +467,97 @@
     <div id="quiz-tab" class="tab-content">
         <div class="card-note" style="border-left-color: var(--accent);">
             <h3>Como está seu coração hoje? 🌿</h3>
-            <p>Responda com sinceridade. Este é apenas um momento de autoconhecimento.</p>
+            <p>Responda com sinceridade às 10 perguntas. Este é apenas um momento de reflexão e autoconhecimento.</p>
         </div>
 
         <form id="quizForm" onsubmit="calcularResultadoQuiz(event)">
             <div class="quiz-question">
-                <p>1. Como descreve sua energia hoje?</p>
+                <p>1. Como descreve sua energia física e mental hoje?</p>
                 <div class="quiz-options">
                     <label class="quiz-option"><input type="radio" name="q1" value="1" required> Leve e disposta(o).</label>
-                    <label class="quiz-option"><input type="radio" name="q1" value="2"> Cansada(o), mas seguindo.</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="2"> Cansada(o), mas seguindo bem.</label>
                     <label class="quiz-option"><input type="radio" name="q1" value="3"> Totalmente exausta(o).</label>
                 </div>
             </div>
 
             <div class="quiz-question">
-                <p>2. Como se sente em relação aos estudos?</p>
+                <p>2. Como se sente em relação às tarefas de estudos?</p>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q2" value="1" required> Tranquila(o).</label>
-                    <label class="quiz-option"><input type="radio" name="q2" value="2"> Com um pouco de pressão.</label>
-                    <label class="quiz-option"><input type="radio" name="q2" value="3"> Sobrecarregada(o).</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="1" required> Tranquila(o) e organizada(o).</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="2"> Com um pouco de pressão acumulada.</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="3"> Muito sobrecarregada(o).</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>3. Como tem sido a qualidade do seu sono nos últimos dias?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q3" value="1" required> Durmo bem e acordo descansada(o).</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="2"> Demoro para dormir ou acordo algumas vezes.</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="3"> Dormir tem sido muito difícil ou insatisfatório.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>4. Quando pensa no seu dia a dia, qual sentimento se destaca?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q4" value="1" required> Animação e calma.</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="2"> Impaciência ou insegurança.</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="3"> Ansiedade ou tristeza profunda.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>5. Como está sua convivência com amigos e pessoas ao redor?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q5" value="1" required> Boa, sinto me conectar com facilidade.</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="2"> Distante em alguns momentos.</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="3"> Sinto-me incompreendido(a) ou isolado(a).</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>6. Como você reage quando algo não sai como o planejado?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q6" value="1" required> Tento me adaptar com calma.</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="2"> Fico chateado(a), mas consigo me recuperar.</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="3"> Fico extremamente frustrado(a) ou sem reação.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>7. Você sente que consegue tirar pausas para descansar durante a rotina?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q7" value="1" required> Sim, reservo tempo para mim sempre.</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="2"> Às vezes consigo, mas é raro.</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="3"> Quase nunca tenho tempo para relaxar.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>8. Qual a facilidade para concentrar-se nas suas atividades atuais?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q8" value="1" required> Consigo focar sem grandes problemas.</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="2"> Me distraio com alguma facilidade.</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="3"> Tenho muita dificuldade em me concentrar.</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>9. Com que frequência sente apoio quando passa por desafios?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q9" value="1" required> Sempre sei com quem contar.</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="2"> Às vezes sinto apoio, depende da situação.</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="3"> Sinto que preciso resolver tudo sozinho(a).</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>10. Como se sente ao olhar para os próximos dias da sua semana?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q10" value="1" required> Confiante e motivado(a).</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="2"> Um pouco apreensivo(a), mas pronto(a).</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="3"> Com medo ou forte desgaste adiantado.</label>
                 </div>
             </div>
 
@@ -591,15 +662,15 @@
         const resultTitle = document.getElementById('resultTitle');
         const resultText = document.getElementById('resultText');
 
-        if (totalScore <= 3) {
+        if (totalScore <= 15) {
             resultTitle.innerText = "Coração em Harmonia 🌻";
-            resultText.innerText = "Você está conseguindo lidar bem com sua rotina. Continue se cuidando!";
-        } else if (totalScore <= 4) {
+            resultText.innerText = "Você demonstra boa estabilidade emocional e está conseguindo gerenciar bem sua rotina. Continue cultivando seus hábitos de autocuidado!";
+        } else if (totalScore <= 22) {
             resultTitle.innerText = "Nuvens Passageiras 🌤️";
-            resultText.innerText = "Alguns momentos trazem cansaço. Reserve um tempo para relaxar.";
+            resultText.innerText = "Alguns momentos trazem cansaço e oscilações. Reserve pausas intencionais na sua rotina e tente desacelerar o ritmo diário.";
         } else {
             resultTitle.innerText = "Coração Precisando de Apoio 💛";
-            resultText.innerText = "Você parece sobrecarregada(o). Considere desabafar com alguém de confiança.";
+            resultText.innerText = "Sua pontuação indica um nível considerável de sobrecarga ou ansiedade. Lembre-se de que não precisa carregar tudo só: considere conversar com seus pais, professores ou profissionais de confiança.";
         }
 
         document.getElementById('quizForm').style.display = 'none';
