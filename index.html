@@ -39,7 +39,6 @@
             --btn-tab-hover: #423833;
         }
 
-        /* Animação criativa de entrada */
         @keyframes welcomeHug {
             0% { opacity: 0; transform: scale(0.96) translateY(12px); filter: blur(4px); }
             100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
@@ -50,11 +49,12 @@
             background-color: var(--warm-bg);
             color: var(--text-dark);
             margin: 0;
-            padding: 20px;
+            padding: 20px 20px 80px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            box-sizing: border-box;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -70,7 +70,7 @@
             transition: background 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Cabeçalho e Botão de Tema */
+        /* Cabeçalho */
         .header-box {
             text-align: center;
             margin-bottom: 25px;
@@ -115,7 +115,7 @@
             margin: 0 auto;
         }
 
-        /* Navegação por abas */
+        /* Abas */
         .nav-tabs {
             display: flex;
             gap: 8px;
@@ -148,7 +148,7 @@
         .tab-btn.active {
             background: var(--primary);
             color: white;
-            box-shadow: 0 4px 12px rgba(224, 122, 95, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .tab-content {
@@ -160,7 +160,7 @@
             animation: welcomeHug 0.5s ease;
         }
 
-        /* Cartões informativos */
+        /* Cartões */
         .card-note {
             background: var(--card-note-bg);
             padding: 20px;
@@ -177,7 +177,7 @@
             margin-bottom: 8px;
         }
 
-        /* Formulários e Fieldsets */
+        /* Formulários */
         fieldset {
             border: 1.5px solid var(--border);
             border-radius: 12px;
@@ -241,7 +241,7 @@
             transform: scale(1.01);
         }
 
-        /* Estilos do Quiz */
+        /* Quiz */
         .quiz-question {
             margin-bottom: 20px;
             padding-bottom: 15px;
@@ -301,12 +301,6 @@
             margin-top: 0;
         }
 
-        .result-box p {
-            line-height: 1.6;
-            font-size: 15px;
-            color: var(--text-dark);
-        }
-
         /* Jogo da Memória */
         .memory-status {
             display: flex;
@@ -325,7 +319,7 @@
             gap: 10px;
             justify-content: center;
             margin: 15px auto;
-            max-width: 400px;
+            max-width: 320px;
         }
 
         .memory-tile {
@@ -339,7 +333,7 @@
             font-size: 24px;
             color: transparent;
             user-select: none;
-            transition: 0.3s;
+            transition: transform 0.2s, background-color 0.3s;
         }
 
         .memory-tile.flipped, .memory-tile.matched {
@@ -353,195 +347,187 @@
             color: white;
             border-color: var(--accent);
         }
+
+        /* Caixa de Conta */
+        .account-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--warm-card);
+            border: 1.5px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .account-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .account-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .account-name {
+            font-weight: bold;
+            font-size: 13px;
+            color: var(--text-dark);
+        }
+
+        .account-link {
+            font-size: 11px;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .account-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-<div class="portal-wrapper" id="portalContainer">
+<div class="portal-wrapper">
     <div class="header-box">
         <button class="theme-toggle-btn" id="themeToggleBtn" onclick="alternarTema()">
             <span id="themeIcon">🌙</span> <span id="themeText">Modo Escuro</span>
         </button>
 
         <h1>Portal AcolheEstudo 💛</h1>
-        <p>Um espaço quentinho e seguro onde seus sentimentos importam. Você não está sozinho(a) nessa jornada; estamos aqui para te escutar com carinho.</p>
+        <p>Um espaço seguro onde seus sentimentos importam. Você não está sozinho(a) nessa jornada.</p>
     </div>
 
     <div class="nav-tabs">
-        <button class="tab-btn active" onclick="trocarAba('acolhimento', event)">Início & Abraço</button>
+        <button class="tab-btn active" onclick="trocarAba('inicio', event)">Início</button>
         <button class="tab-btn" onclick="trocarAba('desabafo', event)">Contar meu Problema</button>
+
         <button class="tab-btn" onclick="trocarAba('quiz', event)">Quiz de Sentimentos</button>
-        <button class="tab-btn" onclick="trocarAba('jogo', event)">Cantinho da Calma</button>
-        <button class="tab-btn" onclick="trocarAba('pais-profissionais', event)">Acesso Família/Escola</button>
+        <button class="tab-btn" onclick="trocarAba('calma', event)">Cantinho da Calma</button>
+        <button class="tab-btn" onclick="trocarAba('pais-profissionais', event)">Família e Escola</button>
     </div>
 
-    <div id="acolhimento-tab" class="tab-content active">
+    <!-- Aba Início -->
+    <div id="inicio-tab" class="tab-content active">
         <div class="card-note">
-            <h3>Você é muito especial para nós</h3>
-            <p>Problemas com amigos, colegas ou sentimentos difíceis de carregar no peito acontecem com todo mundo, mas você não precisa passar por isso em silêncio. Este portal liga você a pessoas que te amam (pais) e profissionais prontos para ajudar com o coração aberto.</p>
+            <h3>Bem-vindo, Dniel! 🌻</h3>
+            <p>Problemas com amigos, estudos ou sentimentos difíceis acontecem com todo mundo. Você não precisa carregar tudo em silêncio. Este portal conecta você a uma rede de apoio pronta para ouvir.</p>
         </div>
         <div class="card-note" style="border-left-color: var(--accent);">
-            <h3>Como podemos te ajudar hoje?</h3>
-            <p>Sinta-se livre para navegar no menu acima. Faça nosso <strong>"Quiz de Sentimentos"</strong> para refletir sobre seu dia, vá até <strong>"Contar meu Problema"</strong> para desabafar, ou relaxe no <strong>"Cantinho da Calma"</strong>.</p>
+            <h3>Como navegar pelo portal?</h3>
+            <p>Acesse o <strong>Quiz de Sentimentos</strong> para refletir sobre seu momento, desabafe na aba <strong>Contar meu Problema</strong> ou relaxe no <strong>Cantinho da Calma</strong>.</p>
         </div>
     </div>
 
+    <!-- Aba Desabafo -->
     <div id="desabafo-tab" class="tab-content">
         <div class="card-note">
-            <h3>Desabafo Seguro</h3>
-            <p>Escreva aqui o que está te afligindo. Suas palavras serão tratadas com total carinho e encaminhadas para nossa rede de apoio integrada de pais e profissionais responsáveis.</p>
+            <h3>Desabafo Seguro 💌</h3>
+            <p>Escreva o que está te afligindo. Suas palavras serão direcionadas com carinho aos responsáveis selecionados.</p>
         </div>
         <form onsubmit="enviarDesabafo(event)">
             <fieldset>
-                <legend>Como podemos te chamar?</legend>
+                <legend>Identificação</legend>
                 <div class="form-row">
-                    <label for="nomeUser">Seu Nome ou Apelido Carinhoso:</label>
+                    <label for="nomeUser">Seu Nome ou Apelido:</label>
                     <input type="text" id="nomeUser" placeholder="Seu nome (ou anônimo)">
                 </div>
                 <div class="form-row">
-                    <label for="canalDestino">Quem você gostaria que lesse primeiro?</label>
+                    <label for="canalDestino">Quem deve ler sua mensagem?</label>
                     <select id="canalDestino">
                         <option value="pais">Apenas meus Pais / Responsáveis</option>
-                        <option value="profissionais">Profissionais de Apoio Escolar / Psicólogo</option>
-                        <option value="ambos">Ambos (Pais e Profissionais)</option>
+                        <option value="profissionais">Equipe Escolar / Psicólogo</option>
+                        <option value="ambos">Ambos (Pais e Escola)</option>
                     </select>
                 </div>
             </fieldset>
             <fieldset>
-                <legend>O que está apertando seu coração?</legend>
+                <legend>Sua Mensagem</legend>
                 <div class="form-row">
-                    <label for="textoProblema">Conte com calma, no seu tempo:</label>
-                    <textarea id="textoProblema" placeholder="Escreva aqui o que aconteceu, como você se sente..."></textarea>
+                    <label for="textoProblema">Conte no seu tempo:</label>
+                    <textarea id="textoProblema" placeholder="Escreva aqui o que aconteceu ou como se sente..."></textarea>
                 </div>
             </fieldset>
-            <button type="submit" class="heart-btn">Enviar mensagem com carinho 💌</button>
+            <button type="submit" class="heart-btn">Enviar mensagem com carinho ✨</button>
         </form>
     </div>
 
+    <!-- Aba Quiz -->
     <div id="quiz-tab" class="tab-content">
         <div class="card-note" style="border-left-color: var(--accent);">
             <h3>Como está seu coração hoje? 🌿</h3>
-            <p>Responda às 10 perguntas abaixo com sinceridade. Lembre-se de que não existem respostas certas ou erradas, este é apenas um momento de autoconhecimento.</p>
+            <p>Responda com sinceridade. Este é apenas um momento de autoconhecimento.</p>
         </div>
 
         <form id="quizForm" onsubmit="calcularResultadoQuiz(event)">
             <div class="quiz-question">
-                <p>1. Como você descreveria a sua energia ao acordar hoje?</p>
+                <p>1. Como descreve sua energia hoje?</p>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q1" value="1" required> Leve, com vontade de começar o dia.</label>
-                    <label class="quiz-option"><input type="radio" name="q1" value="2"> Um pouco cansado(a), mas levando no meu ritmo.</label>
-                    <label class="quiz-option"><input type="radio" name="q1" value="3"> Exausto(a) e sem motivação para sair da cama.</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="1" required> Leve e disposta(o).</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="2"> Cansada(o), mas seguindo.</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="3"> Totalmente exausta(o).</label>
                 </div>
             </div>
 
             <div class="quiz-question">
-                <p>2. Quando pensa nos seus estudos ou tarefas diárias, o que sente?</p>
+                <p>2. Como se sente em relação aos estudos?</p>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q2" value="1" required> Tranquilidade, sinto que consigo dar conta.</label>
-                    <label class="quiz-option"><input type="radio" name="q2" value="2"> Um pouco de pressão, mas é tolerável.</label>
-                    <label class="quiz-option"><input type="radio" name="q2" value="3"> Um aperto no peito e sensação de sobrecarga.</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="1" required> Tranquila(o).</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="2"> Com um pouco de pressão.</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="3"> Sobrecarregada(o).</label>
                 </div>
             </div>
 
-            <div class="quiz-question">
-                <p>3. Como tem sido a qualidade do seu sono nos últimos dias?</p>
-                <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q3" value="1" required> Durmo bem e me sinto descansado(a).</label>
-                    <label class="quiz-option"><input type="radio" name="q3" value="2"> Demoro um pouco para dormir pensando na rotina.</label>
-                    <label class="quiz-option"><input type="radio" name="q3" value="3"> Tenho insônia ou acordo várias vezes na noite.</label>
-                </div>
-            </div>
-
-            <div class="quiz-question">
-                <p>4. Quando algo não sai como o planejado, qual costuma ser sua reação?</p>
-                <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q4" value="1" required> Tento me adaptar e encontrar outra solução.</label>
-                    <label class="quiz-option"><input type="radio" name="q4" value="2"> Fico chateado(a), mas logo passa.</label>
-                    <label class="quiz-option"><input type="radio" name="q4" value="3"> Fico frustrado(a) e com vontade de desistir.</label>
-                </div>
-            </div>
-
-            <div class="quiz-question">
-                <p>5. Como você se sente na convivência com seus amigos ou colegas?</p>
-                <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q5" value="1" required> Acolhido(a) e compreendido(a).</label>
-                    <label class="quiz-option"><input type="radio" name="q5" value="2"> Às vezes deslocado(a), mas no geral tudo bem.</label>
-                    <label class="quiz-option"><input type="radio" name="q5" value="3"> Isolado(a) ou com receio de julgamentos.</label>
-                </div>
-            </div>
-
-            <div class="quiz-question">
-                <p>6. Você tem conseguido tirar um momento do dia para relaxar e fazer o que ama?</p>
-                <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q6" value="1" required> Sim, sempre reservo um tempo para mim.</label>
-                    <label class="quiz-option"><input type="radio" name="q6" value="2"> De vez em quando, quando sobra tempo.</label>
-                    <label class="quiz-option"><input type="radio" name="q6" value="3"> Quase nunca, sinto que estou sempre correndo.</label>
-                </div>
-            </div>
-
-            <div class="quiz-question">
-                <p>7. Como o seu corpo se sente quando você passa por momentos estressantes?</p>
-                <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q7" value="1" required> Relaxado, consigo manter o controle respiration.</label>
-                    <label class="quiz-option"><input type="radio" name="q7" value="2"> Com leve tensão nos ombros ou dor de cabeça rápida.</label>
-                    <label class="quiz-option"><input type="radio" name="q7" value="3"> Tensão forte, dor de estômago ou inquietação constante.</label>
-                </div>
-            </div>
-
-            <div class="quiz-question">
-                <p>8. Com que frequência você compartilha seus sentimentos com alguém?</p>
-                <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q8" value="1" required> Sempre converso com alguém em quem confio.</label>
-                    <label class="quiz-option"><input type="radio" name="q8" value="2"> Apenas quando a situação fica muito difícil.</label>
-                    <label class="quiz-option"><input type="radio" name="q8" value="3"> Guardo tudo para mim, prefiro não incomodar.</label>
-                </div>
-            </div>
-
-            <div class="quiz-question">
-                <p>9. Olhando para a semana que vem pela frente, qual é o sentimento predominante?</p>
-                <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q9" value="1" required> Animação e curiosidade.</label>
-                    <label class="quiz-option"><input type="radio" name="q9" value="2"> Neutralidade, vivendo um dia de cada vez.</label>
-                    <label class="quiz-option"><input type="radio" name="q9" value="3"> Ansiedade e preocupação.</label>
-                </div>
-            </div>
-
-            <div class="quiz-question">
-                <p>10. Se pudesse dar um abraço em si mesmo(a) agora, o que diria?</p>
-                <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q10" value="1" required>"Estou orgulhoso(a) do meu caminho!"</label>
-                    <label class="quiz-option"><input type="radio" name="q10" value="2"> "Está tudo bem ter dias difíceis, vou superar."</label>
-                    <label class="quiz-option"><input type="radio" name="q10" value="3"> "Preciso de um tempo e de ajuda para continuar."</label>
-                </div>
-            </div>
-
-            <button type="submit" class="heart-btn">Ver meu Resultado Acolhedor ✨</button>
+            <button type="submit" class="heart-btn">Ver resultado ✨</button>
         </form>
 
         <div id="quizResult" class="result-box">
             <h3 id="resultTitle"></h3>
             <p id="resultText"></p>
-            <button class="heart-btn" onclick="refazerQuiz()" style="max-width: 250px; margin: 15px auto 0;">Refazer Quiz 🔄</button>
+            <button class="heart-btn" onclick="refazerQuiz()" style="max-width: 200px; margin: 15px auto 0;">Refazer Quiz 🔄</button>
         </div>
     </div>
 
-    <div id="jogo-tab" class="tab-content">
+    <!-- Aba Cantinho da Calma -->
+    <div id="calma-tab" class="tab-content">
         <div class="card-note">
             <h3>Respire fundo e relaxe 🎮</h3>
-            <p>Combine os pares de ícones acolhedores para acalmar a mente.</p>
+            <p>Encontre os pares para desacelerar a mente.</p>
         </div>
         <div class="memory-status">
             <span>Tentativas: <span id="attempts">0</span></span>
-            <span>Pares encontrados: <span id="matches">0</span>/4</span>
+            <span>Pares: <span id="matches">0</span>/4</span>
         </div>
         <div class="memory-grid" id="memoryGrid"></div>
     </div>
 
+    <!-- Aba Pais/Profissionais -->
     <div id="pais-profissionais-tab" class="tab-content">
         <div class="card-note" style="border-left-color: var(--primary);">
-            <h3>Área dos Responsáveis e Educadores</h3>
-            <p>Este espaço é destinado ao acompanhamento e leitura das mensagens enviadas pelos alunos e filhos, visando um atendimento humanizado e acolhedor.</p>
+            <h3>Espaço da Família e Educadores</h3>
+            <p>Área voltada ao acompanhamento humanizado e suporte aos estudantes.</p>
         </div>
+    </div>
+</div>
+
+<!-- Caixinha de Perfil -->
+<div class="account-box">
+    <div class="account-avatar">A</div>
+    <div class="account-info">
+        <span class="account-name">Adrielly</span>
+        <a href="#" class="account-link">Meu perfil</a>
     </div>
 </div>
 
@@ -569,14 +555,13 @@
         }
     }
 
-    // Carregar tema salvo do usuário
     (function carregarTemaSalvo() {
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         atualizarBotaoTema(savedTheme);
     })();
 
-    // Função para troca de abas
+    // Troca de Abas
     function trocarAba(nomeAba, event) {
         const contents = document.querySelectorAll('.tab-content');
         contents.forEach(content => content.classList.remove('active'));
@@ -587,7 +572,7 @@
         document.getElementById(nomeAba + '-tab').classList.add('active');
         event.currentTarget.classList.add('active');
 
-        if (nomeAba === 'jogo') {
+        if (nomeAba === 'calma') {
             iniciarJogo();
         }
     }
@@ -597,26 +582,24 @@
         event.preventDefault();
         let totalScore = 0;
 
-        for (let i = 1; i <= 10; i++) {
-            const selected = document.querySelector(`input[name="q${i}"]:checked`);
-            if (selected) {
-                totalScore += parseInt(selected.value);
-            }
-        }
+        const inputs = document.querySelectorAll('#quizForm input[type="radio"]:checked');
+        inputs.forEach(input => {
+            totalScore += parseInt(input.value);
+        });
 
         const resultBox = document.getElementById('quizResult');
         const resultTitle = document.getElementById('resultTitle');
         const resultText = document.getElementById('resultText');
 
-        if (totalScore <= 14) {
+        if (totalScore <= 3) {
             resultTitle.innerText = "Coração em Harmonia 🌻";
-            resultText.innerText = "Você está conseguindo equilibrar bem suas emoções e lidar de forma saudável com a rotina. Continue cultivando bons hábitos, descansando e sendo essa presença positiva para si mesmo(a) e para quem está ao seu redor!";
-        } else if (totalScore <= 22) {
+            resultText.innerText = "Você está conseguindo lidar bem com sua rotina. Continue se cuidando!";
+        } else if (totalScore <= 4) {
             resultTitle.innerText = "Nuvens Passageiras 🌤️";
-            resultText.innerText = "Você tem momentos de equilíbrio, mas também está sentindo o peso do cansaço ou de pequenas preocupações acumuladas. Que tal dar uma pausa, praticar um hobby ou jogar no nosso 'Cantinho da Calma'? Lembre-se de não guardar tudo só para você.";
+            resultText.innerText = "Alguns momentos trazem cansaço. Reserve um tempo para relaxar.";
         } else {
-            resultTitle.innerText = "Coração Precisando de um Abraço 💛";
-            resultText.innerText = "Seus sentimentos mostram que você está carregando um peso grande no peito e pode estar se sentindo sobrecarregado(a). Você não precisa passar por isso sozinho(a)! Aproveite a aba 'Contar meu Problema' para desabafar com seus pais ou com a equipe da escola. Pedir ajuda é um ato de coragem.";
+            resultTitle.innerText = "Coração Precisando de Apoio 💛";
+            resultText.innerText = "Você parece sobrecarregada(o). Considere desabafar com alguém de confiança.";
         }
 
         document.getElementById('quizForm').style.display = 'none';
@@ -629,7 +612,7 @@
         document.getElementById('quizResult').style.display = 'none';
     }
 
-    // Função de envio do formulário de desabafo
+    // Formulário de Desabafo
     function enviarDesabafo(event) {
         event.preventDefault();
         const nome = document.getElementById('nomeUser').value || 'Anônimo';
@@ -640,166 +623,75 @@
             return;
         }
 
-        alert(`Obrigado por compartilhar, ${nome}. Sua mensagem foi enviada com sucesso e carinho! ❤️`);
+        alert(`Obrigado por compartilhar, ${nome}. Sua mensagem foi registrada! ❤️`);
         document.getElementById('textoProblema').value = '';
-        /seu-site
-   index.html
-   calma.html
-   bullying.html
-   contato.html
-   style.css
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site com Abas Funcionais</title>
+    }
 
-    <style>
-        /* ===========================
-           ESTILO GERAL
-        =========================== */
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
+    // Jogo da Memória
+    const icons = ['🌿', '🌸', '☀️', '💛'];
+    let tiles = [];
+    let flippedTiles = [];
+    let matchedCount = 0;
+    let attemptsCount = 0;
+    let lockBoard = false;
+
+    function iniciarJogo() {
+        const grid = document.getElementById('memoryGrid');
+        grid.innerHTML = '';
+        tiles = [...icons, ...icons].sort(() => Math.random() - 0.5);
+        flippedTiles = [];
+        matchedCount = 0;
+        attemptsCount = 0;
+        lockBoard = false;
+
+        document.getElementById('attempts').innerText = '0';
+        document.getElementById('matches').innerText = '0';
+
+        tiles.forEach((symbol, index) => {
+            const tile = document.createElement('div');
+            tile.classList.add('memory-tile');
+            tile.dataset.symbol = symbol;
+            tile.dataset.index = index;
+            tile.addEventListener('click', virarCarta);
+            grid.appendChild(tile);
+        });
+    }
+
+    function virarCarta() {
+        if (lockBoard || this.classList.contains('flipped') || this.classList.contains('matched')) return;
+
+        this.classList.add('flipped');
+        this.innerText = this.dataset.symbol;
+        flippedTiles.push(this);
+
+        if (flippedTiles.length === 2) {
+            attemptsCount++;
+            document.getElementById('attempts').innerText = attemptsCount;
+            checarPar();
         }
+    }
 
-        /* ===========================
-           MENU SUPERIOR
-        =========================== */
-        nav {
-            background: #4a90e2;
-            padding: 12px;
-            display: flex;
-            gap: 20px;
+    function checarPar() {
+        const [tile1, tile2] = flippedTiles;
+        if (tile1.dataset.symbol === tile2.dataset.symbol) {
+            tile1.classList.add('matched');
+            tile2.classList.add('matched');
+            matchedCount++;
+            document.getElementById('matches').innerText = matchedCount;
+            flippedTiles = [];
+        } else {
+            lockBoard = true;
+            setTimeout(() => {
+                tile1.classList.remove('flipped');
+                tile2.classList.remove('flipped');
+                tile1.innerText = '';
+                tile2.innerText = '';
+                flippedTiles = [];
+                lockBoard = false;
+            }, 1000);
         }
-
-        nav a {
-            color: #fff;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===========================
-           CONTEÚDO DAS ABAS
-        =========================== */
-        .aba {
-            display: none;
-            padding: 20px;
-        }
-
-        .ativa {
-            display: block;
-        }
-
-        /* ===========================
-           CONTA NO CANTO
-        =========================== */
-        .account-box {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ffffff;
-            padding: 12px 16px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .account-box img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .account-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .account-name {
-            font-weight: bold;
-        }
-
-        .account-link {
-            font-size: 12px;
-            color: #4a90e2;
-            text-decoration: none;
-        }
-
-        .account-link:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- MENU -->
-    <nav>
-        <a onclick="abrirAba('inicio')">Início</a>
-        <a onclick="abrirAba('calma')">Cantinho da Calma</a>
-        <a onclick="abrirAba('bullying')">Bullying</a>
-        <a onclick="abrirAba('contato')">Contato</a>
-    </nav>
-
-    <!-- ABAS DO SITE -->
-    <div id="inicio" class="aba ativa">
-        <h1>Bem-vinda, Adrielly!</h1>
-        <p>Escolha uma aba no menu acima para navegar.</p>
-    </div>
-
-    <div id="calma" class="aba">
-        <h1>Cantinho da Calma</h1>
-        <p>Respire fundo… aqui é seu espaço seguro.</p>
-    </div>
-
-    <div id="bullying" class="aba">
-        <h1>Sobre o Bullying</h1>
-        <p>Informações importantes para ajudar adolescentes.</p>
-    </div>
-
-    <div id="contato" class="aba">
-        <h1>Contato</h1>
-        <p>Fale com a gente.</p>
-    </div>
-
-    <!-- CONTA NO CANTO INFERIOR DIREITO -->
-    <div class="account-box">
-        <img src="https://via.placeholder.com/40" alt="Foto de perfil">
-        <div class="account-info">
-            <span class="account-name">Adrielly</span>
-            <a href="#" class="account-link">Ver perfil</a>
-        </div>
-    </div>
-
-    <script>
-        /* ===========================
-           FUNÇÃO PARA ABRIR ABAS
-        =========================== */
-        function abrirAba(nome) {
-            const abas = document.querySelectorAll('.aba');
-            abas.forEach(aba => aba.classList.remove('ativa'));
-            document.getElementById(nome).classList.add('ativa');
-        }
-    </script>
+    }
+</script>
 
 </body>
 </html>
